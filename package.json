@@ -1,0 +1,23 @@
+{
+  "name": "cb_dev_kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "plop": "plop --plopfile cmds/generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "cb-dev-kit": "bin/cb-dev-kit"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "plop": "^2.3.0"
+  }
+}
