@@ -1,14 +1,22 @@
 {
-  "name": "cb_dev_kit",
+  "name": "cb-dev-kit",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI application for ClearBlade system development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "plop": "plop --plopfile cmds/generate.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClearBlade/cb-dev-kit.git"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClearBlade/cb-dev-kit/issues"
+  },
+  "homepage": "https://github.com/ClearBlade/cb-dev-kit#readme",
   "bin": {
     "cb-dev-kit": "bin/cb-dev-kit"
   },
