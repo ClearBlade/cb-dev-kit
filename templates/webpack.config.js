@@ -2,7 +2,7 @@ const { getAllLibrariesEntries, getAllServicesEntries, getAllWidgetsEntries, get
 const { portal, internalResource, service, library, widgetId, configName } = require("./processFlags");
 const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfig, portalConfig, allConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } = require('./configConsts');
 const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
-
+const { allFileTypes } = require('./configConsts');
 
 // add or override configuration options here
 const generateConfig = () => {
@@ -145,7 +145,7 @@ const baseConfig = {
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"]
+    extensions: allFileTypes
   },
   optimization: {
     minimize: false

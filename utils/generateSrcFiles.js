@@ -3,8 +3,7 @@ const fs = require('fs');
 const error = require('../templates/error');
 const getFilesFromDir = require('../templates/getFilesFromDir');
 const { getWidgetPath, getDatasourcePath, getInternalResourcePath, getServicePath, getLibraryPath } = require('../templates/getAssets');
-
-const fileTypes = ['js', 'jsx', 'ts', 'tsx'];
+const { allFileTypes } = require('../templates/configConsts');
 
 const writeNewFile = (path2File, fileType) => {
   const content = fs.readFileSync(path2File).toString();
@@ -36,7 +35,7 @@ module.exports = {
     const { WIDGETS, INTERNAL_RESOURCES, DATASOURCES, SERVICES, LIBRARIES } = module.exports.consts;
     const portalName = args.p;
     const fileType = args.t || 'js';
-    if (fileTypes.indexOf(fileType) > -1) {
+    if (allFileTypes.indexOf(`.${fileType}`) > -1) {
       switch (assetType) {
         case WIDGETS:
           const widgetId = args.w;

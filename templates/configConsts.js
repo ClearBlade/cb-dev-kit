@@ -9,5 +9,8 @@ module.exports = {
   allPortalsConfig: 'allPortals',
   allWidgetsConfig: 'allWidgets',
   allServicesConfig: 'allServices',
-  allLibrariesConfig: 'allLibraries'
+  allLibrariesConfig: 'allLibraries',
+  allFileTypes: ['.js', '.jsx', '.ts', '.tsx'],
+  portalTypes: ['.js', '.jsx', '.ts', '.tsx'],
+  codeTypes: ['.js', '.ts']
 }
