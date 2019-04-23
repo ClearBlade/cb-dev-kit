@@ -1,6 +1,6 @@
 {
   "name": "@clearblade/cb-dev-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI application for ClearBlade system development",
   "main": "index.js",
   "scripts": {
