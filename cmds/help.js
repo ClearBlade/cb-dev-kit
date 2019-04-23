@@ -22,13 +22,13 @@ const menus = {
     Options:
     -portal, -p .............. name of portal
       -widgetId, -w .......... ID of widget, source will include all available parsers
-      -internalResource, -i .. name of internal resource
+      -internalResource, -i .. name of internal resource. Should include .js extension.
       -type, -t .............. (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
     
-    -service, -s ........ name of service
+    -service, -s ........ name of service. Should not include file type extension.
       -type, -t ......... (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
     
-    -library, -l ........ name of library
+    -library, -l ........ name of library. Should not include file type extension.
       -type, -t ......... (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.`,
 
   build: `
@@ -49,11 +49,11 @@ const menus = {
 
     -portal, -p .............. name of portal
       -widgetId, -w .......... (optional) ID of widget
-      -internalResource, -i .. (optional) name of internal resource including extension
+      -internalResource, -i .. (optional) name of internal resource including extension. Should include .js extension.
     
-    -service, -s ........ name of service
+    -service, -s ........ name of service. Should not include file type extension.
     
-    -library, -l ........ name of library`,
+    -library, -l ........ name of library. Should not include file type extension.`,
 
   ['clearblade-hot-reload']: `
     cb-dev-kit clearblade-hot-reload <options>

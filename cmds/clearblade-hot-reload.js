@@ -16,6 +16,6 @@ module.exports = (args) => {
     }
     spawn(script, [], { shell: true, stdio: 'inherit' });
   } else {
-    error('Please specify either a -portal(-p) flag start hot reload. See cb-dev-kit build --help for more info.', true);
+    error('Please specify a -portal(-p) flag start hot reload. See cb-dev-kit help clearblade-hot-reload for more info.', true);
   }
 }

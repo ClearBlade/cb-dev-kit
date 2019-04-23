@@ -63,7 +63,7 @@ module.exports = {
           break;
       }
     } else {
-      error(`Provided file type is not accepted. Please indicate js, jsx, ts, or tsx`, true);
+      error(`Provided file type is not accepted. Type options include js, jsx, ts, or tsx`, true);
     }   
   }
 }

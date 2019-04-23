@@ -15,7 +15,7 @@ module.exports = (args) => {
         if (args.p) {
           spawn(`npm run build:all-widgets -portal=${args.p}`, [], { shell: true, stdio: 'inherit' });
         } else {
-          error(`Please specify a -portal flag to build all widgets`, true);
+          error(`Please specify a -portal flag to build all widgets. See cb-dev-kit help build for more info.`, true);
         }
         break;
       case '-libraries':
@@ -35,6 +35,6 @@ module.exports = (args) => {
       spawn(`npm run build:portal -portal=${args.p}`, [], { shell: true, stdio: 'inherit' });
     }
   } else {
-    error('Please specify either a -portal(-p), -service(-s), -library(-l), or -all flag to build asset. See cb-dev-kit build --help for more info.', true);
+    error('Please specify either a -portal(-p), -service(-s), -library(-l), or -all flag to build asset. See cb-dev-kit help build for more info.', true);
   }
 }
