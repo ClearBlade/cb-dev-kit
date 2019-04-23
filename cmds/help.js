@@ -1,3 +1,5 @@
+const flagConsts = require('../templates/flagConsts');
+
 const menus = {
   main: `
     cb-dev-kit [command] <options>
@@ -20,49 +22,49 @@ const menus = {
     sets up an asset in src directory to be accessed by webpack for transpilation or clearblade-hot-reload(@clearblade/clearblade-hot-reload)
 
     Options:
-    -portal, -p .............. name of portal
-      -widgetId, -w .......... ID of widget, source will include all available parsers
-      -internalResource, -i .. name of internal resource. Should include .js extension.
-      -type, -t .............. (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
+    -${flagConsts.portal}, -p .............. name of portal
+      -${flagConsts.widgetId}, -w .......... ID of widget, source will include all available parsers
+      -${flagConsts.internalResource}, -i .. name of internal resource. Should include .js extension.
+      -${flagConsts.type}, -t .............. (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
     
-    -service, -s ........ name of service. Should not include file type extension.
-      -type, -t ......... (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
+    -${flagConsts.service}, -s ............. name of service. Should not include file type extension.
+      -${flagConsts.type}, -t .............. (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.
     
-    -library, -l ........ name of library. Should not include file type extension.
-      -type, -t ......... (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.`,
+    -${flagConsts.library}, -l ............. name of library. Should not include file type extension.
+      -${flagConsts.type}, -t .............. (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js.`,
 
   build: `
     cb-dev-kit build <options>
     builds an asset from src directory into its respective directory in the system
 
     Options:
-    -all, -a ................. build all assets in src directory
+    -${flagConsts.all}, -a ................. build all assets in src directory
 
-    -all-services ............ build all services in src directory
+    -${flagConsts.allServices} ............. build all services in src directory
 
-    -all-libraries ........... build all libraries in src directory
+    -${flagConsts.allLibraries} ............ build all libraries in src directory
 
-    -all-portals ............. build all portals in src directory
+    -${flagConsts.allPortals} .............. build all portals in src directory
 
-    -all-widgets ............. build all widgets in a portal in src directory
-      -portal, -p ............ name of portal
+    -${flagConsts.allWidgets} .............. build all widgets in a portal in src directory
+      -${flagConsts.portal}, -p ............ name of portal
 
-    -portal, -p .............. name of portal
-      -widgetId, -w .......... (optional) ID of widget
-      -internalResource, -i .. (optional) name of internal resource including extension. Should include .js extension.
+    -${flagConsts.portal}, -p .............. name of portal
+      -${flagConsts.widgetId}, -w .......... (optional) ID of widget
+      -${flagConsts.internalResource}, -i .. (optional) name of internal resource including extension. Should include .js extension.
     
-    -service, -s ........ name of service. Should not include file type extension.
+    -${flagConsts.service}, -s ............. name of service. Should not include file type extension.
     
-    -library, -l ........ name of library. Should not include file type extension.`,
+    -${flagConsts.library}, -l ............. name of library. Should not include file type extension.`,
 
   ['clearblade-hot-reload']: `
     cb-dev-kit clearblade-hot-reload <options>
     
     Options:
-    -portal, -p ............. name of portal
-      -messagePort, -m ...... (optional) messaging port console is listening to, defaults to 1883
-      -noSSL, -n ............ (optional) if pointing hotReload at a local platform, please set -noSSL to true
-      -caPath, -c ........... (optional) if pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA`
+    -${flagConsts.portal}, -p ............. name of portal
+      -${flagConsts.messagePort}, -m ...... (optional) messaging port console is listening to, defaults to 1883
+      -${flagConsts.noSSL}, -n ............ (optional) if pointing hotReload at a local platform, please set -noSSL to true
+      -${flagConsts.caPath}, -c ........... (optional) if pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA`
       
 }
 

@@ -1,22 +1,24 @@
-const { getPortals, getInternalResources } = require('../utils/getAssets');
+const { getPortals, getInternalResources } = require('../templates/getAssets');
+const { portalTypes } = require('../templates/configConsts');
+const { portal, internalResource, type } = require('../templates/flagConsts');
 
 module.exports = {
   description: `add an internal resource to the src directory`,
   prompts: [{
     type: 'list',
-    name: 'portal',
+    name: portal,
     message: 'Select portal',
     choices: getPortals()
   }, {
     type: 'list',
-    name: 'intResource',
+    name: internalResource,
     message: 'Select internal resource',
     choices: (name) => getInternalResources(name.portal)
   }, {
     type: 'list',
-    name: 'type',
+    name: type,
     message: 'Select file type',
-    choices: ['js', 'ts', 'tsx', 'jsx']
+    choices: portalTypes.map(type => type.slice(1))
   }],
   actions: [{
     type: 'createFile'

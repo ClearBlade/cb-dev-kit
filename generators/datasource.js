@@ -1,4 +1,4 @@
-const { getPortals, getDatasources } = require('../utils/getAssets');
+const { getPortals, getDatasources } = require('../templates/getAssets');
 
 module.exports = {
   description: `add a datasource parser to the src directory`,

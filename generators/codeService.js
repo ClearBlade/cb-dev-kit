@@ -1,17 +1,19 @@
-const { getServices } = require('../utils/getAssets');
+const { getServices } = require('../templates/getAssets');
+const { codeTypes } = require('../templates/configConsts');
+const { service, type } = require('../templates/flagConsts');
 
 module.exports = {
   description: `add a code service to the src directory`,
   prompts: [{
     type: 'list',
-    name: 'service',
+    name: service,
     message: 'Select code service',
     choices: getServices()
   }, {
     type: 'list',
-    name: 'type',
+    name: type,
     message: 'Select file type',
-    choices: ['js', 'ts']
+    choices: codeTypes.map(type => type.slice(1))
   }],
   actions: [{
     type: 'createFile'
