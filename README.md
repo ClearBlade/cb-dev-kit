@@ -1,4 +1,4 @@
-# Clearblade Hot Reload
+# CB Dev Kit
 
 ## Overview
 
