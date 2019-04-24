@@ -55,6 +55,7 @@ Launches generator to walk through setting up an asset in src directory to be ac
 ```
 cb-dev-kit generate
 ```
+![](images/generator.gif "cb-dev-kit generator")
 
 ### create
 (Alternative to generate) Sets up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload)
