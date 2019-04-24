@@ -91,6 +91,9 @@ cb-dev-kit build <options>
 
 ### clearblade-hot-reload
 Allows any changes made to a portal inside src/ or directly in system's portal directory to update the portal in real time when the file is saved
+
+![](images/hot-reload.gif "cb-dev-kit clearblade-hot-reload start")
+
 #### Usage
 1. Install globally if you will be using package on multiple systems (recommended) or install locally to system directory
 ```
