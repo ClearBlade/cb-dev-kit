@@ -37,11 +37,11 @@ CB Dev Kit currently supports transpilation of the following asset types:
 
 Install globally if you will be using package on multiple systems (recommended) or install locally to system directory
 ```
-npm i -g cb-dev-kit
+npm i -g @clearblade/cb-dev-kit
 ```
 or
 ```
-npm i --save-dev cb-dev-kit
+npm i --save-dev @clearblade/cb-dev-kit
 ```
 
 ### init
@@ -97,11 +97,11 @@ Allows any changes made to a portal inside src/ or directly in system's portal d
 #### Usage
 1. Install globally if you will be using package on multiple systems (recommended) or install locally to system directory
 ```
-npm i -g clearblade-hot-reload
+npm i -g @clearblade/clearblade-hot-reload
 ```
 or
 ```
-npm i --save-dev clearblade-hot-reload
+npm i --save-dev @clearblade/clearblade-hot-reload
 ```
 
 2. Initialize ClearBlade Hot Reload from within the portal by clicking the icon (displayed below) at the top right of the Dev console on the right side. A success notification should display, else check the console for information on any errors.
