@@ -81,8 +81,8 @@ cb-dev-kit build <options>
 |portal|Portal name. Builds all internal resources and widgets in portal|```cb-dev-kit build -portal=<portalname>```|
 |widgetId|ID of widget. Builds all parsers in widget|```cb-dev-kit build -portal=<portalname> -widgetId=<widgetId>```|
 |internalResource|Name of internal resource (including extension)|```cb-dev-kit build -portal=<portalname> -internalResource=<internalResource>```|
-|service|Name of service (without file extension)|```cb-dev-kit create -service=<servicename> -type=ts```|
-|library|Name of library (without file extension)|```cb-dev-kit create -library=<libraryname> -type=ts```|
+|service|Name of service (without file extension)|```cb-dev-kit build -service=<servicename> -type=ts```|
+|library|Name of library (without file extension)|```cb-dev-kit build -library=<libraryname> -type=ts```|
 |all|Builds all assets in src directory|```cb-dev-kit build -all```|
 |all-services|Builds all services in src directory|```cb-dev-kit build -all-services```|
 |all-libraries|Builds all libraries in src directory|```cb-dev-kit build -all-libraries```|
