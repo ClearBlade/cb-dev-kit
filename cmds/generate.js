@@ -11,7 +11,7 @@ const libraryGenerator = require('../generators/library');
 const shell = require('shelljs');
 
 module.exports = (plop) => {
-  plop.setActionType('createFile', function (answers, config, plop) {
+  plop.setActionType('createFile', function (answers) {
     let cmd = `cb-dev-kit create`;
     for (const flag in answers) {
       cmd += ` -${flag}=${answers[flag]}`;
