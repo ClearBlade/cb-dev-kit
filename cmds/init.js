@@ -5,12 +5,12 @@ const error = require('../templates/error');
 const initConfigs = require('../utils/initConfigurations');
 
 module.exports = () => {
-  if (!fs.existsSync(path.resolve(`package.json`))) {
-    shell.exec(`npm init -y`);
-  };
-
   if (!fs.existsSync(path.resolve(`node_modules`))) {
     fs.appendFileSync('.gitignore', '\nnode_modules');
+  };
+
+  if (!fs.existsSync(path.resolve(`package.json`))) {
+    shell.exec(`npm init -y`);
   };
 
   const packageJson = JSON.parse(fs.readFileSync(path.resolve(`package.json`).toString()));
@@ -18,12 +18,12 @@ module.exports = () => {
   const modifiedPackageJson = {
     ...packageJson,
     scripts: {
-      ...initConfigs.scripts,
       ...packageJson.scripts,
+      ...initConfigs.scripts
     },
     devDependencies: {
-      ...initConfigs.packages,
-      ...packageJson.devDependencies
+      ...packageJson.devDependencies,
+      ...initConfigs.packages
     },
     babel: {
       ...packageJson.babel,
