@@ -1,6 +1,6 @@
 const { getPortals, getWidgets } = require('../templates/getAssets');
 const { portalTypes } = require('../templates/configConsts');
-const { portal, widgetId, type, unitTests } = require('../templates/flagConsts');
+const { portal, widgetId, type, unitTests, react } = require('../templates/flagConsts');
 
 module.exports = {
   description: `add a widget's parser(s) to the src directory`,
@@ -17,16 +17,39 @@ module.exports = {
       choices: (name) => getWidgets(name.portal).map((widget) => {
         return {
           name: widget,
-          value: widget.split('_').pop()
+          value: widget
         }
       })
     }, {
+      when: (resp) => resp[widgetId].split('_')[0] === 'HTML',
+      type: 'list',
+      name: react,
+      message: 'Would you like to make this widget a React component?',
+      choices: ['yes', 'no'],
+    }, {
+      when: (resp) => resp[react] === 'yes',
+      type: 'list',
+      name: 'confirmReact',
+      message: 'This option will override any existing parser code. Are you sure you would like to continue?',
+      choices: ['yes', 'no']
+    }, {
+      when: (resp) => resp.confirmReact === 'yes',
+      type: 'input',
+      name: 'componentName',
+      message: 'What would you like to name the component'
+    }, {
+      when: (resp) => !resp.hasOwnProperty(react) || resp.hasOwnProperty(react) === 'no',
       type: 'list',
       name: type,
       message: 'Select file type',
       choices: portalTypes.map(type => type.slice(1))
-    },
-    {
+    }, {
+      when: (resp) => resp[react] === 'yes',
+      type: 'list',
+      name: type,
+      message: 'Select file type',
+      choices: ['jsx', 'tsx']
+    }, {
       type: 'list',
       name: unitTests,
       message: 'Include unit test file?',

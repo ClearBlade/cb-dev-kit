@@ -6,6 +6,7 @@ module.exports = {
   service: 'service',
   library: 'library',
   type: 'type',
+  react: 'react',
   messagePort: 'messagePort',
   noSSL: 'noSSL',
   caPath: 'caPath',

@@ -5,9 +5,10 @@ const getFilesFromDir = require('../templates/getFilesFromDir');
 const { getWidgetPath, getDatasourcePath, getInternalResourcePath, getServicePath, getLibraryPath } = require('../templates/getAssets');
 const { allFileTypes } = require('../templates/configConsts');
 const generateUnitTest = require('./generateUnitTest');
+const { generateJs, generateHTML } = require('./generateReactTemplate');
 
-const writeNewFile = (path2File, fileType, entityName, includeTests) => {
-  const content = fs.readFileSync(path2File).toString();
+const writeNewFile = (path2File, fileType, entityName, includeTests, componentName) => {
+  let content = fs.readFileSync(path2File).toString();
   const cwd = process.cwd().length;
   const filePath = `${path2File.slice(0, cwd)}/src/${path2File.slice(cwd)}`.split('/');
   const fileName = filePath.pop();
@@ -17,6 +18,15 @@ const writeNewFile = (path2File, fileType, entityName, includeTests) => {
       error(err, true);
     }
   });
+  if (!!componentName) {
+    content = generateJs(componentName);
+    const htmlPath = `${dirPath}/${fileName}`.replace('/src/', '').replace('.js', '.html');
+    fs.writeFile(htmlPath, generateHTML(componentName), (err) => {
+      if (err) {
+        error(err, true);
+      }
+    })
+  }
   fs.writeFile(`${dirPath}/${fileName.replace('.js', `.${fileType}`)}`, content, (err) => {
     if (err) {
       error(err, true);
@@ -45,13 +55,14 @@ module.exports = {
     const portalName = args.p;
     const fileType = args.t || 'js';
     const includeTests = args.u === 'true';
+    const componentName = args.r;
     if (allFileTypes.indexOf(`.${fileType}`) > -1) {
       switch (assetType) {
         case WIDGETS:
           const widgetId = args.w;
           const files = getFilesFromDir(getWidgetPath(portalName, widgetId), ['.js']);
           for (let i = 0; i < files.length; i++) {
-            writeNewFile(path.resolve(files[i]), fileType, widgetId, includeTests);
+            writeNewFile(path.resolve(files[i]), fileType, widgetId, includeTests, componentName);
           }
           break;
         case INTERNAL_RESOURCES:
