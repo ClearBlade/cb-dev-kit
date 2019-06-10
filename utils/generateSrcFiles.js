@@ -33,7 +33,7 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
     }
   });
   if (!!includeTests) {
-    const content = generateUnitTest(entityName)
+    const content = generateUnitTest(componentName || entityName)
     fs.writeFile(`${dirPath}/${fileName.replace('.js', `.test.${fileType}`)}`, content, (err) => {
       if (err) {
         error(err, true);

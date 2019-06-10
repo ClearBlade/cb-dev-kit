@@ -10,6 +10,7 @@ class ${name} extends React.Component {
   }
 }
 
-ReactDOM.render(<${name} />, document.getElementById('${name}-react-widget'))`,
+ReactDOM.render(<${name} />, document.getElementById('${name}-react-widget'));
+export default ${name};`,
   generateHTML: (name) => `<div id='${name}-react-widget'></div>`
 }
