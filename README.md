@@ -51,7 +51,16 @@ cb-dev-kit init
 ```
 
 ### generate
-Launches generator to walk through setting up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload), providing available asset names and types that are available.
+(Recommended) Launches generator to walk through setting up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload), providing available asset names and types that are available.
+
+#### Highlights
+* No need to look up flags and asset names/IDs
+* Selection of all asset types that can be created in src folder
+* Selection of all specific assets for each type
+* Selection of file types available for asset (js, ts, jsx, tsx)
+* Prompt for auto-generating adjacent unit test file for generated file
+* Prompt for auto-generating a React Component template for HTML widgets
+
 ```
 cb-dev-kit generate
 ```
@@ -67,9 +76,10 @@ cb-dev-kit create <options>
 |portal|Portal name|
 |widgetId|ID of widget, source will include all available parsers|```cb-dev-kit create -portal=<portalname> -widgetId=<widgetId>```|
 |internalResource|Name of internal resource (including extension)|```cb-dev-kit create -portal=<portalname> -internalResource=<internalResource>```|
+|service|Name of service (without file extension)|```cb-dev-kit create -service=<serviceName> -type=ts```|
+|library|Name of library (without file extension)|```cb-dev-kit create -library=<libraryName> -type=ts```|
 |type|(optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js|```cb-dev-kit create -portal=<portalname> -widgetId=<widgetId> -type=tsx```|
-|service|Name of service (without file extension)|```cb-dev-kit create -service=<servicename> -type=ts```|
-|library|Name of library (without file extension)|```cb-dev-kit create -library=<libraryname> -type=ts```|
+|unitTests|(optional) set to true to include an adjacent auto-generated unit test file|```cb-dev-kit create -service=<serviceName> -type=ts -unitTests=true```
 
 ### build
 Builds an asset or multiple assets from src directory into its respective directory in the system
