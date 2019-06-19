@@ -5,12 +5,12 @@ const error = require('../templates/error');
 const initConfigs = require('../utils/initConfigurations');
 
 module.exports = () => {
-  if (!fs.existsSync(path.resolve(`package.json`))) {
-    shell.exec(`npm init -y`);
-  };
-
   if (!fs.existsSync(path.resolve(`node_modules`))) {
     fs.appendFileSync('.gitignore', '\nnode_modules');
+  };
+
+  if (!fs.existsSync(path.resolve(`package.json`))) {
+    shell.exec(`npm init -y`);
   };
 
   const packageJson = JSON.parse(fs.readFileSync(path.resolve(`package.json`).toString()));
@@ -18,12 +18,12 @@ module.exports = () => {
   const modifiedPackageJson = {
     ...packageJson,
     scripts: {
-      ...initConfigs.scripts,
       ...packageJson.scripts,
+      ...initConfigs.scripts
     },
     devDependencies: {
-      ...initConfigs.packages,
-      ...packageJson.devDependencies
+      ...packageJson.devDependencies,
+      ...initConfigs.packages
     },
     babel: {
       ...packageJson.babel,
@@ -41,7 +41,9 @@ module.exports = () => {
 
   shell.exec('npm install');
 
-  fs.mkdirSync(path.resolve(`./cb-dev-kit`));
+  if (!fs.existsSync(path.resolve(`./cb-dev-kit`))) {
+    fs.mkdirSync(path.resolve(`./cb-dev-kit`));
+  };
 
   const templates = fs.readdirSync(path.join(__dirname, '../templates'));
   for (const file in templates) {
@@ -51,8 +53,25 @@ module.exports = () => {
     });
   }
 
-  if (!fs.existsSync(path.resolve(`./src`))) {
-    fs.mkdirSync(path.resolve(`./src`));
+  const srcPath = path.resolve(`./src`);
+  if (!fs.existsSync(srcPath)) {
+    fs.mkdirSync(srcPath);
+  }
+
+  const setupTestsPath = path.resolve(`./src/setupTests.ts`);
+  if (!fs.existsSync(setupTestsPath)) {
+    const content = fs.readFileSync(path.join(__dirname, '../utils/setupTestsTemplate.ts'));
+    fs.writeFileSync(setupTestsPath, content, function(err) {
+      if (err) error(err);
+    })
+  }
+
+  const globalDefPath = path.resolve(`./src/global.d.ts`);
+  if (!fs.existsSync(globalDefPath)) {
+    const content = fs.readFileSync(path.join(__dirname, '../utils/globalDefTemplate.ts'));
+    fs.writeFileSync(globalDefPath, content, function(err) {
+      if (err) error(err);
+    })
   }
 }
 

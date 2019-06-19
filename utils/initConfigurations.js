@@ -13,7 +13,7 @@ module.exports = {
     "start:clearblade-hot-reload": "npm-run-all --parallel start:watch start:server",
     "start:watch": "webpack --config cb-dev-kit/webpack.config.js --config-name clearbladeHotReload",
     "start:server": "clearblade-hot-reload start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "test:watch": "jest --watchAll"
   },
   packages: {
