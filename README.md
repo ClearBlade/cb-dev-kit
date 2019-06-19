@@ -49,6 +49,17 @@ Initialize cb-dev-kit to create src folder, update/create your package.json with
 ```
 cb-dev-kit init
 ```
+#### Includes
+* Src directory
+  * Where all "created" assets will be stored so code can be written and then transpiled in es6, jsx, and/or typescript
+  * Includes **global.d.ts** => TS definition file for adding types to Node's global interface for libraries used in Code Services and Libraries
+  * Includes **setupTests.ts** => boilerplate for mocking out library calls made in Code Services and Libraries
+  
+* package.json
+  * Includes start, build, and test scripts
+  * Includes all packages necessary for typescript, es6, transpilation, React, and webpack compilation that will be stored node_modules directory
+  * Includes babel transpilation configurations and jest testing configurations (See [Testing](#Running-Tests) section for more details)
+
 
 ### generate
 (Recommended) Launches generator to walk through setting up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload), providing available asset names and types that are available.
@@ -129,5 +140,16 @@ cb-dev-kit clearblade-hot-reload start
 |messagePort|Should be set to the same -messagePort the console is running on. Defaults to 1883.|-messagePort=1884|
 |noSSL|Disables SSL for non-TLS connections on local systems. If on a production system with TLS enabled, ignore this flag and set -messagePort to 1884|-noSSL=true|
 |caPath|If pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA.|-caPath=/\*/\*/*/ca.pem|
+
+## Running Tests
+
+### Configuration
+* `cb-dev-kit init` will automatically install jest and provide the jest configuration in your system's package.json to check the src directory for test files, including babel configurations for jsx and tsx files
+
+* `cb-dev-kit init` will also automatically create a setupTests.ts file in src that provides a boilerplate for mocking out global objects for libraries to be used in code services and libraries
+
+### Running tests
+* All tests in the src directory can be run with `npm run test`
+
 
 
