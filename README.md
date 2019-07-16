@@ -60,11 +60,15 @@ cb-dev-kit init
   * Includes all packages necessary for typescript, es6, transpilation, React, and webpack compilation that will be stored node_modules directory
   * Includes babel transpilation configurations and jest testing configurations (See [Testing](#Running-Tests) section for more details)
 
+### Asset Setup
+There are two ways to set up an asset in src directory:
+* [generate](#generate)- _Recommended_
+* [create](#create) 
 
-### generate
+#### generate
 (Recommended) Launches generator to walk through setting up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload), providing available asset names and types that are available.
 
-#### Highlights
+##### Highlights
 * No need to look up flags and asset names/IDs
 * Selection of all asset types that can be created in src folder
 * Selection of all specific assets for each type
@@ -77,7 +81,7 @@ cb-dev-kit generate
 ```
 ![](images/generator.gif "cb-dev-kit generator")
 
-### create
+#### create
 (Alternative to generate) Sets up an asset in src directory to be accessed by webpack for transpilation, testing, or [ClearBlade Hot Reload](https://github.com/ClearBlade/clearblade-hot-reload)
 ```
 cb-dev-kit create <options>
