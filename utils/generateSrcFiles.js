@@ -10,7 +10,7 @@ const { generateJs, generateHTML } = require('./generateReactTemplate');
 const writeNewFile = (path2File, fileType, entityName, includeTests, componentName) => {
   let content = fs.readFileSync(path2File).toString();
   const cwd = process.cwd().length;
-  const filePath = `${path2File.slice(0, cwd)}/src/${path2File.slice(cwd)}`.split('/');
+  const filePath = path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)).split('/');
   const fileName = filePath.pop();
   const dirPath = filePath.join('/');
   fs.mkdirSync(dirPath, {recursive: true}, (err) => {
@@ -20,21 +20,21 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
   });
   if (!!componentName) {
     content = generateJs(componentName);
-    const htmlPath = `${dirPath}/${fileName}`.replace('/src/', '').replace('.js', '.html');
+    const htmlPath = path.join(dirPath, fileName).replace('/src/', '').replace('.js', '.html');
     fs.writeFile(htmlPath, generateHTML(componentName), (err) => {
       if (err) {
         error(err, true);
       }
     })
   }
-  fs.writeFile(`${dirPath}/${fileName.replace('.js', `.${fileType}`)}`, content, (err) => {
+  fs.writeFile(path.join(dirPath, fileName.replace('.js', `.${fileType}`)), content, (err) => {
     if (err) {
       error(err, true);
     }
   });
   if (!!includeTests) {
     const content = generateUnitTest(componentName || entityName)
-    fs.writeFile(`${dirPath}/${fileName.replace('.js', `.test.${fileType}`)}`, content, (err) => {
+    fs.writeFile(path.join(dirPath, fileName.replace('.js', `.test.${fileType}`)), content, (err) => {
       if (err) {
         error(err, true);
       }
@@ -67,19 +67,19 @@ module.exports = {
           break;
         case INTERNAL_RESOURCES:
           const intResourceName = args.i;
-          writeNewFile(`${getInternalResourcePath(portalName, intResourceName)}/${intResourceName}`, fileType, intResourceName, includeTests);
+          writeNewFile(path.join(getInternalResourcePath(portalName, intResourceName), intResourceName), fileType, intResourceName, includeTests);
           break;
         case DATASOURCES:
           const dsName = args.d;
-          writeNewFile(`${getDatasourcePath(portalName, dsName)}/parser.js`, fileType, dsName, includeTests);
+          writeNewFile(path.join(getDatasourcePath(portalName, dsName), 'parser.js'), fileType, dsName, includeTests);
           break;
         case SERVICES:
           const serviceName = args.s;
-          writeNewFile(`${getServicePath(serviceName)}/${serviceName}.js`, fileType, serviceName, includeTests);
+          writeNewFile(path.join(getServicePath(serviceName), `${serviceName}.js`), fileType, serviceName, includeTests);
           break;
         case LIBRARIES:
           const libraryName = args.l;
-          writeNewFile(`${getLibraryPath(libraryName)}/${libraryName}.js`, fileType, libraryName, includeTests);
+          writeNewFile(path.join(getLibraryPath(libraryName), `${libraryName}.js`), fileType, libraryName, includeTests);
           break;
       }
     } else {
