@@ -18,9 +18,10 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
       error(err, true);
     }
   });
-  if (!!componentName) {
+  console.log('component name', componentName);
+  if (componentName && componentName !== 'no') {
     content = generateJs(componentName);
-    const htmlPath = path.join(dirPath, fileName).replace('/src/', '').replace('.js', '.html');
+    const htmlPath = path.join(dirPath, fileName).replace('src/', '').replace('.js', '.html');
     fs.writeFile(htmlPath, generateHTML(componentName), (err) => {
       if (err) {
         error(err, true);
@@ -33,7 +34,7 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
     }
   });
   if (!!includeTests) {
-    const content = generateUnitTest(componentName || entityName)
+    const content = generateUnitTest(componentName && componentName !== 'no' ? componentName : entityName);
     fs.writeFile(path.join(dirPath, fileName.replace('.js', `.test.${fileType}`)), content, (err) => {
       if (err) {
         error(err, true);
