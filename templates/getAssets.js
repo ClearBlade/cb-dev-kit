@@ -13,11 +13,18 @@ const CODE = 'code';
 const SERVICES = 'services';
 const LIBRARIES = 'libraries';
 
+const checkForAssetDir = (path, asset) => {
+  if (fs.existsSync(path)) {
+    return fs.readdirSync(path);
+  }
+  error(`Could not locate ${asset} directory at ${path}`, true);
+}
+
 module.exports = {
   getAllPath: (inSrc) => path.resolve(inSrc ? `${SRC}` : `./`),
   
   getPortalsPath: (inSrc) => path.join(module.exports.getAllPath(inSrc), PORTALS),
-  getPortals: () => fs.readdirSync(module.exports.getPortalsPath()),
+  getPortals: () => checkForAssetDir(module.exports.getPortalsPath()),
   getPortalPath: (name, inSrc) => {
     if (module.exports.getPortals().indexOf(name) > -1) {
       return path.join(module.exports.getPortalsPath(inSrc), name);
@@ -27,7 +34,7 @@ module.exports = {
   getPortalConfigPath: (name, inSrc) => path.join(module.exports.getPortalPath(name, inSrc), CONFIG),
 
   getWidgetsPath: (portal, inSrc) => path.join(module.exports.getPortalConfigPath(portal, inSrc), WIDGETS),
-  getWidgets: (portal) => fs.readdirSync(module.exports.getWidgetsPath(portal)),
+  getWidgets: (portal) => checkForAssetDir(module.exports.getWidgetsPath(portal)),
   getWidgetPath: (portal, widgetId, inSrc) => {
     const widgetName = module.exports.getWidgets(portal).find((widget) => widget.split('_').indexOf(widgetId) > -1);
     if (widgetName) {
@@ -37,7 +44,7 @@ module.exports = {
   },
 
   getInternalResourcesPath: (portal, inSrc) => path.join(module.exports.getPortalConfigPath(portal, inSrc), INTERNAL_RESOURCES),
-  getInternalResources: (portal) => fs.readdirSync(module.exports.getInternalResourcesPath(portal)),
+  getInternalResources: (portal) => checkForAssetDir(module.exports.getInternalResourcesPath(portal)),
   getInternalResourcePath: (portal, name, inSrc) => {
     if (module.exports.getInternalResources(portal).indexOf(name) > -1) {
       return path.join(module.exports.getInternalResourcesPath(portal, inSrc), name);
@@ -46,7 +53,7 @@ module.exports = {
   },
 
   getDatasourcesPath: (portal, inSrc) => path.join(module.exports.getPortalConfigPath(portal, inSrc), DATASOURCES),
-  getDatasources: (portal) => fs.readdirSync(module.exports.getDatasourcesPath(portal)),
+  getDatasources: (portal) => checkForAssetDir(module.exports.getDatasourcesPath(portal)),
   getDatasourcePath: (portal, name, inSrc) => {
     if (module.exports.getDatasources(portal).indexOf(name) > -1) {
       return path.join(module.exports.getDatasourcesPath(portal, inSrc), name);
@@ -55,7 +62,7 @@ module.exports = {
   },
 
   getServicesPath: (inSrc) => path.join(module.exports.getAllPath(inSrc), CODE, SERVICES),
-  getServices: () => fs.readdirSync(module.exports.getServicesPath()),
+  getServices: () => checkForAssetDir(module.exports.getServicesPath()),
   getServicePath: (name, inSrc) => {
     if (module.exports.getServices().indexOf(name) > -1) {
       return path.join(module.exports.getServicesPath(inSrc), name);
@@ -64,7 +71,7 @@ module.exports = {
   },
 
   getLibrariesPath: (inSrc) => path.join(module.exports.getAllPath(inSrc), CODE, LIBRARIES),
-  getLibraries: () => fs.readdirSync(module.exports.getLibrariesPath()),
+  getLibraries: () => checkForAssetDir(module.exports.getLibrariesPath()),
   getLibraryPath: (name, inSrc) => {
     if (module.exports.getLibraries().indexOf(name) > -1) {
       return path.join(module.exports.getLibrariesPath(inSrc), name);
