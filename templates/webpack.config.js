@@ -134,8 +134,11 @@ const baseConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: "babel-loader"
+        test: /\.tsx?$|\.jsx?$/,
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env"]
+        }
       },
       {
         test: /\.js$/,
