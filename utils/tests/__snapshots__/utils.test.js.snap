@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils Should generate react template 1`] = `
+Object {
+  "HTML": "<div id='TestComponent-react-widget'></div>",
+  "JavaScript": "import React from 'react';
+import ReactDOM from 'react-dom';
+
+class TestComponent extends React.Component {
+  render() {
+    return (
+      <div />
+    );
+  }
+}
+
+ReactDOM.render(<TestComponent />, document.getElementById('TestComponent-react-widget'));
+export default TestComponent;",
+}
+`;
+
+exports[`utils Should generate unit test 1`] = `
+"// import TestComponent from './index';
+
+describe('TestComponent', () => {
+  it('Expect to have unit tests specified', () => {
+    expect(false).toEqual(true);
+  });
+})"
+`;

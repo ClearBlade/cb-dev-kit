@@ -26,5 +26,7 @@
     "plop": "^2.3.0",
     "shelljs": "^0.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
 }
