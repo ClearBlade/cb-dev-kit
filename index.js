@@ -16,7 +16,7 @@ module.exports = () => {
   
     switch (cmd) {
       case 'init':
-        require('./cmds/init')(args)
+        require('./cmds/init').default(args)
         break
   
       case 'create':
