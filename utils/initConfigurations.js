@@ -41,6 +41,18 @@ module.exports = {
     "webpack": "^4.29.4",
     "webpack-cli": "^3.3.0"
   },
+  babel: {
+    presets: [
+      "@babel/preset-react",
+      "@babel/typescript",
+      [
+        "@babel/env",
+        {
+          "modules": false
+        }
+      ]
+    ]
+  },
   jest: {
     "moduleDirectories": [
       "node_modules",
