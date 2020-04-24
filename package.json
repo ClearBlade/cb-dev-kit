@@ -21,12 +21,12 @@
     "cb-dev-kit": "bin/cb-dev-kit"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
-    "minimist": "^1.2.0",
-    "plop": "^2.3.0",
+    "chalk": "^4.0.0",
+    "minimist": "^1.2.5",
+    "plop": "^2.6.0",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^25.4.0"
   }
 }
