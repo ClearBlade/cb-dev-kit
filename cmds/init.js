@@ -45,14 +45,23 @@ module.exports = {
 
     shell.exec('npm install');
 
-    if (!fs.existsSync(path.resolve(`./cb-dev-kit`))) {
-      fs.mkdirSync(path.resolve(`./cb-dev-kit`));
+    if (fs.existsSync(path.resolve(`./cb-dev-kit`))) { // if old directory without "." prefix exists in system, remove it
+      const oldPath = path.resolve(`./cb-dev-kit`);
+      fs.readdirSync(oldPath).forEach(file => {
+        const curPath = path.join(oldPath, file);
+        fs.unlinkSync(curPath);
+      });
+      fs.rmdirSync(oldPath);
+    };
+
+    if (!fs.existsSync(path.resolve(`./.cb-dev-kit`))) {
+      fs.mkdirSync(path.resolve(`./.cb-dev-kit`));
     };
 
     const templates = fs.readdirSync(path.join(__dirname, '../templates'));
     for (const file in templates) {
       const content = fs.readFileSync(path.join(__dirname, `../templates/${templates[file]}`).toString());
-      fs.writeFileSync(path.resolve(`./cb-dev-kit/${templates[file]}`), content, function (err) {
+      fs.writeFileSync(path.resolve(`./.cb-dev-kit/${templates[file]}`), content, function (err) {
         if (err) error(err);
       });
     }
