@@ -21,6 +21,8 @@ module.exports = (args) => {
       case '-libraries':
         spawn(`npm run build:all-libraries`, [], { shell: true, stdio: 'inherit' });
         break;
+      default:
+        spawn(`npm run build:all`, [], { shell: true, stdio: 'inherit' });
     }
   } else if (args.s) {
     spawn(`npm run build:service -service=${args.s}`, [], { shell: true, stdio: 'inherit' });
