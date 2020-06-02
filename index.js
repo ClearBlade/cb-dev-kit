@@ -5,6 +5,7 @@ const fs = require('fs');
 const error = require('./templates/error');
 const shell = require('shelljs');
 const spawn = require('child_process').spawnSync;
+const escape = require('./utils/escapePathName');
 
 module.exports = () => {
   if (fs.existsSync(path.resolve('./system.json'))) {
@@ -12,7 +13,7 @@ module.exports = () => {
 
     let cmd = args._[0] || 'help';
   
-    const cwd = process.cwd();
+    const cwd = escape(process.cwd());
   
     switch (cmd) {
       case 'init':

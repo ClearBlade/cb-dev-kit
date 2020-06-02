@@ -1,0 +1,1 @@
+module.exports = (path) => path.replace(/(\s+)/g, '\\$1');

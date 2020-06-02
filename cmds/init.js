@@ -34,10 +34,13 @@ module.exports = {
     };
 
     if (!fs.existsSync(path.resolve(`package.json`))) {
-      shell.exec(`npm init -y`);
-    };
+      const err = shell.exec(`npm init -y`).stderr;
+      if (err && err.includes('Invalid name')) {
+        error(`Could not execute npm init due to invalid name in file path. Check that file path does not include any spaces or special characters: "${path.resolve()}". If needed, npm init command may be run independently before cb-dev-kit init command.`)
+      }
+     };
 
-    const packageJson = JSON.parse(fs.readFileSync(path.resolve(`package.json`).toString()));
+    const packageJson = JSON.parse(fs.readFileSync(path.resolve(`package.json`)).toString());
 
     fs.writeFileSync(path.resolve(`package.json`), module.exports.generatePackageJson(packageJson), function (err) {
       if (err) error(err);
