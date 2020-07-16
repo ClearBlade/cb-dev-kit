@@ -14,8 +14,9 @@ module.exports = () => {
     const args = minimist(process.argv.slice(2))
 
     let cmd = args._[0] || 'help';
-  
+    console.log('before cwd func');
     const cwd = escape(process.cwd());
+    console.log('after cwd func');
   
     switch (cmd) {
       case 'init':
