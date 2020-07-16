@@ -13,6 +13,7 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
   const filePath = path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)).split('/');
   const fileName = filePath.pop();
   const dirPath = filePath.join('/');
+  console.log('filePath-', path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)), 'dirpath-', dirPath);
   fs.mkdirSync(dirPath, {recursive: true}, (err) => {
     if (err) {
       error(err, true);
