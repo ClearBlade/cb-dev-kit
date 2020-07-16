@@ -46,8 +46,8 @@ module.exports = () => {
       case 'generate':
         console.log('inside generate block');
         shell.cd(path.join(__dirname))
-        console.log('inside generate block2');
-        spawn(`cwd=${cwd} npm run plop`, [], { shell: true, stdio: 'inherit' });
+        console.log('inside generate block2', cwd);
+        spawn(`cwdir=${cwd} npm run plop`, [], { shell: true, stdio: 'inherit' });
         console.log('inside generate block3');
         break
   
