@@ -7,6 +7,8 @@ const shell = require('shelljs');
 const spawn = require('child_process').spawnSync;
 const escape = require('./utils/escapePathName');
 
+console.log('hello!')
+
 module.exports = () => {
   if (fs.existsSync(path.resolve('./system.json'))) {
     const args = minimist(process.argv.slice(2))
