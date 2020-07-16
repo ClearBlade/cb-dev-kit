@@ -10,10 +10,10 @@ const { generateJs, generateHTML } = require('./generateReactTemplate');
 const writeNewFile = (path2File, fileType, entityName, includeTests, componentName) => {
   let content = fs.readFileSync(path2File).toString();
   const cwd = process.cwd().length;
-  const filePath = path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)).split('/');
+  const filePath = path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)).split(path.sep);
   console.log('orig filePath', filePath);
   const fileName = filePath.pop();
-  const dirPath = filePath.join('/');
+  const dirPath = filePath.join(path.sep);
   console.log('filePath-', path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)), 'dirpath-', dirPath);
   fs.mkdirSync(dirPath, {recursive: true}, (err) => {
     if (err) {
@@ -23,7 +23,7 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
   console.log('component name', componentName);
   if (componentName && componentName !== 'no') {
     content = generateJs(componentName);
-    const htmlPath = path.join(dirPath, fileName).replace('src/', '').replace('.js', '.html');
+    const htmlPath = path.join(dirPath, fileName).replace(`src${path.sep}`, '').replace('.js', '.html');
     fs.writeFile(htmlPath, generateHTML(componentName), (err) => {
       if (err) {
         error(err, true);
