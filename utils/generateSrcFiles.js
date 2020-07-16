@@ -11,6 +11,7 @@ const writeNewFile = (path2File, fileType, entityName, includeTests, componentNa
   let content = fs.readFileSync(path2File).toString();
   const cwd = process.cwd().length;
   const filePath = path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)).split('/');
+  console.log('orig filePath', filePath);
   const fileName = filePath.pop();
   const dirPath = filePath.join('/');
   console.log('filePath-', path.join(path2File.slice(0, cwd), 'src', path2File.slice(cwd)), 'dirpath-', dirPath);
