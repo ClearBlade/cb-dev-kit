@@ -7,16 +7,12 @@ const shell = require('shelljs');
 const spawn = require('child_process').spawnSync;
 const escape = require('./utils/escapePathName');
 
-console.log('hello!')
-
 module.exports = () => {
   if (fs.existsSync(path.resolve('./system.json'))) {
     const args = minimist(process.argv.slice(2))
 
     let cmd = args._[0] || 'help';
-    console.log('before cwd func');
     const cwd = escape(process.cwd());
-    console.log('after cwd func');
   
     switch (cmd) {
       case 'init':
@@ -44,11 +40,8 @@ module.exports = () => {
         break
       
       case 'generate':
-        console.log('inside generate block');
         shell.cd(path.join(__dirname))
-        console.log('inside generate block2', cwd);
         spawn(`npm run plop`, [], { shell: true, stdio: 'inherit', env: { ...process.env, cwd: cwd} });
-        console.log('inside generate block3');
         break
   
       default:

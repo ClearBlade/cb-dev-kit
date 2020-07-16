@@ -1,8 +1,6 @@
-console.log('one', 'cwd?', process.cwd(), process.env);
 if (process.env.cwd) {
   process.chdir(process.env.cwd);
 }
-console.log('two');
 
 const { widgetId, react } = require('../templates/flagConsts');
 
