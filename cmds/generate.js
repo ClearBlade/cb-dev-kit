@@ -1,4 +1,4 @@
-console.log('one');
+console.log('one', 'cwd?', process.cwd(), process.env);
 if (process.env.cwd) {
   process.chdir(process.env.cwd);
 }

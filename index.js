@@ -47,7 +47,7 @@ module.exports = () => {
         console.log('inside generate block');
         shell.cd(path.join(__dirname))
         console.log('inside generate block2', cwd);
-        spawn(`npm run plop`, [], { cwd: cwd, shell: true, stdio: 'inherit' });
+        spawn(`npm run plop`, [], { shell: true, stdio: 'inherit', env: { ...process.env, cwd: cwd} });
         console.log('inside generate block3');
         break
   
