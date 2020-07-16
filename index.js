@@ -12,6 +12,7 @@ module.exports = () => {
     const args = minimist(process.argv.slice(2))
 
     let cmd = args._[0] || 'help';
+    
     const cwd = escape(process.cwd());
   
     switch (cmd) {
