@@ -21,7 +21,7 @@ const checkForAssetDir = (path, asset) => {
 }
 
 module.exports = {
-  getAllPath: (inSrc) => path.resolve(inSrc ? `${SRC}` : `./`),
+  getAllPath: (inSrc) => path.resolve(inSrc ? `${SRC}` : `.${path.sep}`),
   
   getPortalsPath: (inSrc) => path.join(module.exports.getAllPath(inSrc), PORTALS),
   getPortals: () => checkForAssetDir(module.exports.getPortalsPath(), PORTALS),
