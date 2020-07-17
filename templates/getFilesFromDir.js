@@ -4,10 +4,10 @@ const path = require('path');
 // only want to return index for widgets and root service/library/intResource names
 const confirmNameForType = (filePath) => {
   const fileName = path.basename(filePath, path.extname(filePath));
-  return (filePath.includes('/config/widgets/') && fileName === 'index') ||
-    (filePath.includes(`/config/internalResources/${fileName}.js`)) ||
-    (filePath.includes(`/code/libraries/${fileName}`)) ||
-    (filePath.includes(`/code/services/${fileName}`))
+  return (filePath.includes(path.join('config', 'widgets')) && fileName === 'index') ||
+    (filePath.includes(path.join('config', 'internalResources', `${fileName}.js`))) ||
+    (filePath.includes(path.join('code', 'libraries', fileName))) ||
+    (filePath.includes(path.join('code', 'services', fileName)))
 };
 
 module.exports = (dir, fileTypes) => {
