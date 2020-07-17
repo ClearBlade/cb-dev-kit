@@ -12,7 +12,7 @@ module.exports = () => {
     const args = minimist(process.argv.slice(2))
 
     let cmd = args._[0] || 'help';
-  
+    
     const cwd = escape(process.cwd());
   
     switch (cmd) {
@@ -42,7 +42,7 @@ module.exports = () => {
       
       case 'generate':
         shell.cd(path.join(__dirname))
-        spawn(`cwd=${cwd} npm run plop`, [], { shell: true, stdio: 'inherit' });
+        spawn(`npm run plop`, [], { shell: true, stdio: 'inherit', env: { ...process.env, cwd: cwd} });
         break
   
       default:
