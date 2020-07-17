@@ -6,6 +6,7 @@ const { allFileTypes } = require('./configConsts');
 
 // add or override configuration options here
 const generateConfig = () => {
+  console.log('generateConfig', configName);
   switch(configName) {
     case allConfig: 
       return {
