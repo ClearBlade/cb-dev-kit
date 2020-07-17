@@ -3,7 +3,7 @@ const { portal, internalResource, service, library, widgetId, configName } = req
 const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfig, portalConfig, allConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } = require('./configConsts');
 const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
 const { allFileTypes } = require('./configConsts');
-
+console.log('test!!');
 // add or override configuration options here
 const generateConfig = () => {
   console.log('generateConfig', configName);
