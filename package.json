@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
     "plop": "plop --plopfile cmds/generate.js"
   },
   "repository": {
