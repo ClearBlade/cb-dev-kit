@@ -10,7 +10,7 @@ const {
   getAllPath,
 } = require("./getAssets");
 const { allFileTypes, portalTypes, codeTypes } = require("./configConsts");
-const createEntryObject = require("./createEntryObject");
+const { createEntryObject } = require("./createEntryObject");
 const path = require("path");
 
 module.exports = {
