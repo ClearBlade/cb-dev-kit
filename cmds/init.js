@@ -66,7 +66,7 @@ module.exports = {
       fs.mkdirSync(path.resolve(`./.cb-dev-kit`));
     };
 
-    ncp(path.resolve('../templates'), path.resolve('./.cb-dev-kit'), function(err) {
+    ncp(path.resolve(__dirname, '../templates'), path.resolve('./.cb-dev-kit'), function(err) {
       if (err) error(err);
     })
 
