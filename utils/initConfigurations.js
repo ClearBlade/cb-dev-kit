@@ -16,12 +16,12 @@ module.exports = {
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
-  packages: {
-    "@babel/core": "^7.3.3",
+  devDependencies: {
+    "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/clearbladejs-server": "^1.1.1",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.2",
@@ -38,8 +38,18 @@ module.exports = {
     "source-map-loader": "^0.2.4",
     "ts-jest": "^25.4.0",
     "typescript": "^3.3.3",
-    "webpack": "^4.29.4",
+    "webpack": "^5.1.0",
     "webpack-cli": "^3.3.0"
+  },
+  dependencies: {
+    "buffer": "^5.6.0",
+    "builtin-status-codes": "^3.0.0",
+    "crypto-browserify": "^3.12.0",
+    "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0",
+    "stripe": "^8.107.0",
+    "url": "^0.11.0",
+    "xtend": "^4.0.2"
   },
   babel: {
     presets: [

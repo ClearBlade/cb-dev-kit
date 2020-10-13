@@ -4,6 +4,23 @@ const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfi
 const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
 const { allFileTypes } = require('./configConsts');
 
+const codeEngineEnvironment = {
+  // The environment supports arrow functions ('() => { ... }').
+  arrowFunction: false,
+  // The environment supports BigInt as literal (123n).
+  bigIntLiteral: false,
+  // The environment supports const and let for variable declarations.
+  const: false,
+  // The environment supports destructuring ('{ a, b } = obj').
+  destructuring: false,
+  // The environment supports an async import() function to import EcmaScript modules.
+  dynamicImport: false,
+  // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+  forOf: false,
+  // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+  module: false,
+},
+
 // add or override configuration options here
 const generateConfig = () => {
   switch(configName) {
@@ -98,7 +115,8 @@ const generateConfig = () => {
         entry: getAllServicesEntries(),
         output: {
           filename: `[name]`,
-          path: getServicesPath()
+          path: getServicesPath(),
+          environment: codeEngineEnvironment
         }
       }
     case serviceConfig:
@@ -106,7 +124,8 @@ const generateConfig = () => {
         entry: `${getServicePath(service, true)}/${service}`,
         output: {
           filename: `${service}.js`,
-          path: getServicePath(service)
+          path: getServicePath(service),
+          environment: codeEngineEnvironment
         }
       }
     case allLibrariesConfig:
@@ -114,7 +133,8 @@ const generateConfig = () => {
         entry: getAllLibrariesEntries(),
         output: {
           filename: `[name]`,
-          path: getLibrariesPath()
+          path: getLibrariesPath(),
+          environment: codeEngineEnvironment
         }
       }
     case libraryConfig:
@@ -122,7 +142,8 @@ const generateConfig = () => {
         entry: `${getLibraryPath(library, true)}/${library}`,
         output: {
           filename: `${library}.js`,
-          path: getLibraryPath(library)
+          path: getLibraryPath(library),
+          environment: codeEngineEnvironment
         }
       }
     }
@@ -148,7 +169,17 @@ const baseConfig = {
     ]
   },
   resolve: {
-    extensions: allFileTypes
+    extensions: allFileTypes,
+    fallback: {
+      path: "path-browserify",
+      crypto: "crypto-browserify",
+      buffer: "buffer",
+      stream: "stream-browserify",
+      child_process: false,
+      url: "url",
+      http: path.resolve(__dirname, "polyfills/http/index.js"),
+      https: path.resolve(__dirname, "polyfills/https/index.js"),
+    },
   },
   optimization: {
     minimize: false
