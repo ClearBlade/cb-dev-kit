@@ -19,7 +19,7 @@ const codeEngineEnvironment = {
   forOf: false,
   // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
   module: false,
-},
+};
 
 // add or override configuration options here
 const generateConfig = () => {
