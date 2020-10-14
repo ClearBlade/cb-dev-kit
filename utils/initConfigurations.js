@@ -46,6 +46,7 @@ module.exports = {
     "builtin-status-codes": "^3.0.0",
     "crypto-browserify": "^3.12.0",
     "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0",
     "readable-stream": "2.3.7",
     "stripe": "^8.107.0",
     "url": "^0.11.0",
