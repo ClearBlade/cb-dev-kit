@@ -21,7 +21,6 @@ function decideMode(preferBinary, useFetch) {
 }
 
 var ClientRequest = (module.exports = function (opts) {
-  console.log("ClientRequest::1");
   var self = this;
   stream.Writable.call(self);
 
@@ -36,7 +35,6 @@ var ClientRequest = (module.exports = function (opts) {
   Object.keys(opts.headers).forEach(function (name) {
     self.setHeader(name, opts.headers[name]);
   });
-  console.log("ClientRequest::2");
 
   var preferBinary;
   var useFetch = true;
@@ -64,16 +62,13 @@ var ClientRequest = (module.exports = function (opts) {
   } else {
     throw new Error("Invalid value for opts.mode");
   }
-  console.log("ClientRequest::3");
+
   self._mode = decideMode(preferBinary, useFetch);
   self._fetchTimer = null;
-  console.log("ClientRequest::4");
 
   self.on("finish", function () {
-    console.log("ClientRequest::6");
     self._onFinish();
   });
-  console.log("ClientRequest::5");
 
   setTimeout(function () {
     self.emit("socket", {});
@@ -163,25 +158,12 @@ ClientRequest.prototype._onFinish = function () {
     }
   });
 
-  console.log(
-    "_onFinish",
-    typeof headersList,
-    typeof opts,
-    typeof body,
-    headersList,
-    opts,
-    body
-  );
-
-  // self._xhr =
-
   const requestObject = Requests();
   const cbOptions = createClearBladeHttpOptions(opts, body);
   requestObject[getClearBladeHttpMethod(opts.method)](cbOptions, function (
     err,
     data
   ) {
-    console.log("cb http callback", err, data);
     if (err) {
       process.nextTick(function () {
         self.emit("error", err);
@@ -192,108 +174,9 @@ ClientRequest.prototype._onFinish = function () {
           return "";
         },
       };
-      // self._xhr = new XMLHttpRequest();
-      // self._xhr.responseText = data;
-      console.log("data!!!!", data);
       self._onXHRProgress(data);
     }
   });
-
-  // if (self._mode === "fetch") {
-  //   var signal = null;
-  //   if (capability.abortController) {
-  //     var controller = new AbortController();
-  //     signal = controller.signal;
-  //     self._fetchAbortController = controller;
-
-  //     if ("requestTimeout" in opts && opts.requestTimeout !== 0) {
-  //       self._fetchTimer = global.setTimeout(function () {
-  //         self.emit("requestTimeout");
-  //         if (self._fetchAbortController) self._fetchAbortController.abort();
-  //       }, opts.requestTimeout);
-  //     }
-  //   }
-
-  //   global
-  //     .fetch(self._opts.url, {
-  //       method: self._opts.method,
-  //       headers: headersList,
-  //       body: body || undefined,
-  //       mode: "cors",
-  //       credentials: opts.withCredentials ? "include" : "same-origin",
-  //       signal: signal,
-  //     })
-  //     .then(
-  //       function (response) {
-  //         self._fetchResponse = response;
-  //         self._connect();
-  //       },
-  //       function (reason) {
-  //         global.clearTimeout(self._fetchTimer);
-  //         if (!self._destroyed) self.emit("error", reason);
-  //       }
-  //     );
-  // } else {
-  //   var xhr = (self._xhr = new global.XMLHttpRequest());
-  //   try {
-  //     xhr.open(self._opts.method, self._opts.url, true);
-  //   } catch (err) {
-  //     process.nextTick(function () {
-  //       self.emit("error", err);
-  //     });
-  //     return;
-  //   }
-
-  //   // Can't set responseType on really old browsers
-  //   if ("responseType" in xhr) xhr.responseType = self._mode;
-
-  //   if ("withCredentials" in xhr) xhr.withCredentials = !!opts.withCredentials;
-
-  //   if (self._mode === "text" && "overrideMimeType" in xhr)
-  //     xhr.overrideMimeType("text/plain; charset=x-user-defined");
-
-  //   if ("requestTimeout" in opts) {
-  //     xhr.timeout = opts.requestTimeout;
-  //     xhr.ontimeout = function () {
-  //       self.emit("requestTimeout");
-  //     };
-  //   }
-
-  //   headersList.forEach(function (header) {
-  //     xhr.setRequestHeader(header[0], header[1]);
-  //   });
-
-  //   self._response = null;
-  //   xhr.onreadystatechange = function () {
-  //     switch (xhr.readyState) {
-  //       case rStates.LOADING:
-  //       case rStates.DONE:
-  //         self._onXHRProgress();
-  //         break;
-  //     }
-  //   };
-  //   // Necessary for streaming in Firefox, since xhr.response is ONLY defined
-  //   // in onprogress, not in onreadystatechange with xhr.readyState = 3
-  //   if (self._mode === "moz-chunked-arraybuffer") {
-  //     xhr.onprogress = function () {
-  //       self._onXHRProgress();
-  //     };
-  //   }
-
-  //   xhr.onerror = function () {
-  //     if (self._destroyed) return;
-  //     self.emit("error", new Error("XHR error"));
-  //   };
-
-  //   try {
-  //     xhr.send(body);
-  //   } catch (err) {
-  //     process.nextTick(function () {
-  //       self.emit("error", err);
-  //     });
-  //     return;
-  //   }
-  // }
 };
 
 /**
@@ -311,7 +194,6 @@ function statusValid(xhr) {
 }
 // todo: is this necessary?
 ClientRequest.prototype._onXHRProgress = function (data) {
-  console.log("ClientRequest._onXHRProgress::1");
   var self = this;
 
   // if (!statusValid(self._xhr) || self._destroyed) return;
@@ -322,7 +204,6 @@ ClientRequest.prototype._onXHRProgress = function (data) {
 };
 
 ClientRequest.prototype._connect = function () {
-  console.log("ClientRequest._connect::1");
   var self = this;
 
   if (self._destroyed) return;
@@ -358,7 +239,6 @@ ClientRequest.prototype.abort = ClientRequest.prototype.destroy = function () {
 };
 
 ClientRequest.prototype.end = function (data, encoding, cb) {
-  console.log("ClientRequest.end", typeof data, typeof encoding, typeof cb);
   var self = this;
   if (typeof data === "function") {
     cb = data;

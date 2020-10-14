@@ -8,7 +8,6 @@ for (var key in http) {
 }
 
 https.request = function (params, cb) {
-  console.log("https request!");
   params = validateParams(params);
   return http.request.call(this, params, cb);
 };

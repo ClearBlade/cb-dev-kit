@@ -7,7 +7,6 @@ var url = require("url");
 var http = exports;
 
 http.request = function (opts, cb) {
-  console.log("http request!", opts, typeof cb);
   if (typeof opts === "string") opts = url.parse(opts);
   else opts = extend(opts);
 
@@ -18,19 +17,16 @@ http.request = function (opts, cb) {
 
   // Necessary for IPv6 addresses
   if (host && host.indexOf(":") !== -1) host = "[" + host + "]";
-  console.log("http.request::1");
 
   // This may be a relative url. The browser should always be able to interpret it correctly.
   opts.url =
     (host ? protocol + "//" + host : "") + (port ? ":" + port : "") + path;
   opts.method = (opts.method || "GET").toUpperCase();
   opts.headers = opts.headers || {};
-  console.log("http.request::2");
 
   // Also valid opts.auth, opts.mode
 
   var req = new ClientRequest(opts);
-  console.log("http.request::3");
   if (cb) req.on("response", cb);
   return req;
 };
