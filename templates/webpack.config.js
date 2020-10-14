@@ -4,6 +4,7 @@ const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfi
 const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
 const { allFileTypes } = require('./configConsts');
 const path = require('path');
+const webpack = require('webpack');
 
 const codeEngineEnvironment = {
   // The environment supports arrow functions ('() => { ... }').
@@ -113,6 +114,7 @@ const generateConfig = () => {
       }
     case allServicesConfig:
       return {
+        // todo: apply env.js to all service entries
         entry: getAllServicesEntries(),
         output: {
           filename: `[name]`,
@@ -122,13 +124,25 @@ const generateConfig = () => {
       }
     case serviceConfig:
       return {
-        entry: `${getServicePath(service, true)}/${service}`,
+        entry: {
+          index: [
+            path.resolve(__dirname, "polyfills/env.js"),
+            `${getServicePath(service, true)}/${service}`,
+          ],
+        },
+        plugins: [
+          new webpack.ProvidePlugin({
+            process: path.resolve(__dirname, "polyfills/process.js"),
+            setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
+          }),
+        ],
         output: {
           filename: `${service}.js`,
           path: getServicePath(service),
           environment: codeEngineEnvironment
         }
       }
+      // todo: apply entry and plugins to libraries
     case allLibrariesConfig:
       return {
         entry: getAllLibrariesEntries(),
