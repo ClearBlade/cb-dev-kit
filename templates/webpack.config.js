@@ -186,14 +186,16 @@ const baseConfig = {
   resolve: {
     extensions: allFileTypes,
     fallback: {
-      path: "path-browserify",
-      crypto: "crypto-browserify",
-      buffer: "buffer",
-      stream: "stream-browserify",
+      assert: require.resolve('assert/'),
+      util: require.resolve('util/'),
+      path: 'path-browserify',
+      crypto: 'crypto-browserify',
+      buffer: 'buffer',
+      stream: 'stream-browserify',
       child_process: false,
-      url: "url",
-      http: path.resolve(__dirname, "polyfills/http/index.js"),
-      https: path.resolve(__dirname, "polyfills/https/index.js"),
+      url: 'url',
+      http: path.resolve(__dirname, 'polyfills/http/index.js'),
+      https: path.resolve(__dirname, 'polyfills/https/index.js'),
     },
   },
   optimization: {

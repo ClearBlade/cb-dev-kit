@@ -42,6 +42,7 @@ module.exports = {
     "webpack-cli": "^3.3.0"
   },
   dependencies: {
+    "assert": "^2.0.0",
     "buffer": "^5.6.0",
     "builtin-status-codes": "^3.0.0",
     "crypto-browserify": "^3.12.0",
@@ -50,6 +51,7 @@ module.exports = {
     "readable-stream": "2.3.7",
     "stripe": "^8.107.0",
     "url": "^0.11.0",
+    "util": "^0.12.3",
     "xtend": "^4.0.2"
   },
   babel: {
