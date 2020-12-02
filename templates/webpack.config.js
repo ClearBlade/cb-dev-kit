@@ -197,6 +197,8 @@ const baseConfig = {
       http: path.resolve(__dirname, 'polyfills/http/index.js'),
       https: path.resolve(__dirname, 'polyfills/https/index.js'),
     },
+    // ignore the browser field when processing an npm's package.json, if it exists
+    aliasFields: []
   },
   optimization: {
     minimize: false
