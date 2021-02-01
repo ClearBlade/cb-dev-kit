@@ -117,7 +117,9 @@ function getClearBladeHttpMethod(nodeHttpMethod) {
 }
 
 function createClearBladeHttpOptions(nodeOptions, body) {
-  const opts = {};
+  const opts = {
+    full: true,
+  };
   if (nodeOptions.url) {
     opts.uri = nodeOptions.url;
   }
@@ -126,6 +128,13 @@ function createClearBladeHttpOptions(nodeOptions, body) {
   }
   if (body) {
     opts.body = body;
+  }
+  if (nodeOptions.auth) {
+    const splitAuth = nodeOptions.auth.split(":");
+    opts.auth = {
+      user: splitAuth[0],
+      pass: splitAuth[1],
+    };
   }
   return opts;
 }
@@ -138,7 +147,10 @@ ClientRequest.prototype._onFinish = function () {
   var headersObj = self._headers;
   var body = null;
   if (opts.method !== "GET" && opts.method !== "HEAD") {
-    body = self._body[0].toString();
+    body = "";
+    self._body.forEach(function (buf) {
+      body += buf.toString();
+    });
     // body = new Blob(self._body, {
     //   type: (headersObj["content-type"] || {}).value || "",
     // });
@@ -160,23 +172,35 @@ ClientRequest.prototype._onFinish = function () {
 
   const requestObject = Requests();
   const cbOptions = createClearBladeHttpOptions(opts, body);
-  requestObject[getClearBladeHttpMethod(opts.method)](cbOptions, function (
-    err,
-    data
-  ) {
-    if (err) {
-      process.nextTick(function () {
-        self.emit("error", err);
-      });
-    } else {
-      self._xhr = {
-        getAllResponseHeaders: function () {
-          return "";
-        },
-      };
-      self._onXHRProgress(data);
+  requestObject[getClearBladeHttpMethod(opts.method)](
+    cbOptions,
+    function (err, data) {
+      if (err) {
+        process.nextTick(function () {
+          self.emit("error", err);
+        });
+      } else {
+        try {
+          const fdata = JSON.parse(data);
+          self._xhr = {
+            getAllResponseHeaders: function getAllResponseHeaders() {
+              return JSON.stringify(fdata.Header);
+            },
+            status: fdata.Status,
+          };
+          self._onXHRProgress(fdata.Body);
+        } catch (e) {
+          console.log("failed to parse http response", e.stack);
+          self._xhr = {
+            getAllResponseHeaders: function getAllResponseHeaders() {
+              return "";
+            },
+          };
+          self._onXHRProgress(data);
+        }
+      }
     }
-  });
+  );
 };
 
 /**

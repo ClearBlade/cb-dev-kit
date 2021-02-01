@@ -3,6 +3,7 @@ const process = {
   nextTick: function (cb) {
     setTimeout(cb, 0);
   },
+  env: {},
 };
 
 module.exports = process;

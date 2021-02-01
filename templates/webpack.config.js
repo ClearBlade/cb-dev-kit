@@ -1,10 +1,48 @@
-const { getAllLibrariesEntries, getAllServicesEntries, getAllWidgetsEntries, getAllPortalsEntries, getAllEntries, getWidgetEntries, getPortalEntries } = require('./getEntryPoints');
-const { portal, internalResource, service, library, widgetId, configName } = require("./processFlags");
-const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfig, portalConfig, allConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } = require('./configConsts');
-const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
-const { allFileTypes } = require('./configConsts');
-const path = require('path');
-const webpack = require('webpack');
+const {
+  getAllLibrariesEntries,
+  getAllServicesEntries,
+  getAllWidgetsEntries,
+  getAllPortalsEntries,
+  getAllEntries,
+  getWidgetEntries,
+  getPortalEntries,
+} = require("./getEntryPoints");
+const {
+  portal,
+  internalResource,
+  service,
+  library,
+  widgetId,
+  configName,
+} = require("./processFlags");
+const {
+  allLibrariesConfig,
+  allServicesConfig,
+  allWidgetsConfig,
+  allPortalsConfig,
+  portalConfig,
+  allConfig,
+  serviceConfig,
+  widgetConfig,
+  internalResourceConfig,
+  libraryConfig,
+  clearbladeHotReloadConfig,
+} = require("./configConsts");
+const {
+  getLibrariesPath,
+  getServicesPath,
+  getWidgetsPath,
+  getPortalsPath,
+  getAllPath,
+  getLibraryPath,
+  getServicePath,
+  getInternalResourcePath,
+  getPortalConfigPath,
+  getWidgetPath,
+} = require("./getAssets");
+const { allFileTypes } = require("./configConsts");
+const path = require("path");
+const webpack = require("webpack");
 
 const codeEngineEnvironment = {
   // The environment supports arrow functions ('() => { ... }').
@@ -25,93 +63,95 @@ const codeEngineEnvironment = {
 
 // add or override configuration options here
 const generateConfig = () => {
-  switch(configName) {
-    case allConfig: 
+  switch (configName) {
+    case allConfig:
       return {
         entry: getAllEntries(),
         output: {
-          filename: '[name]',
-          path: getAllPath()
+          filename: "[name]",
+          path: getAllPath(),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    case allPortalsConfig: 
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
+    case allPortalsConfig:
       return {
         entry: getAllPortalsEntries(),
         output: {
-          filename: '[name]',
-          path: getPortalsPath()
+          filename: "[name]",
+          path: getPortalsPath(),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    case portalConfig: 
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
+    case portalConfig:
       return {
         entry: getPortalEntries(portal),
         output: {
-          filename: '[name]',
-          path: getPortalConfigPath(portal)
+          filename: "[name]",
+          path: getPortalConfigPath(portal),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    case allWidgetsConfig: 
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
+    case allWidgetsConfig:
       return {
         entry: getAllWidgetsEntries(portal),
         output: {
-          filename: '[name]',
-          path: getWidgetsPath(portal)
+          filename: "[name]",
+          path: getWidgetsPath(portal),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    case widgetConfig: 
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
+    case widgetConfig:
       return {
         entry: getWidgetEntries(portal, widgetId),
         output: {
-          filename: '[name]',
-          path: getWidgetPath(portal, widgetId)
+          filename: "[name]",
+          path: getWidgetPath(portal, widgetId),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    case internalResourceConfig: 
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
+    case internalResourceConfig:
       return {
-        entry: `${getInternalResourcePath(portal, internalResource, true)}/${internalResource.split('.')[0]}`,
+        entry: `${getInternalResourcePath(portal, internalResource, true)}/${
+          internalResource.split(".")[0]
+        }`,
         output: {
           filename: internalResource,
-          path: getInternalResourcePath(portal, internalResource)
+          path: getInternalResourcePath(portal, internalResource),
         },
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
     case clearbladeHotReloadConfig:
       return {
-        mode: 'development', // so only the changed module is built
+        mode: "development", // so only the changed module is built
         entry: getPortalEntries(portal),
         output: {
           filename: `[name]`,
-          path: getPortalConfigPath(portal)
+          path: getPortalConfigPath(portal),
         },
         watch: true,
         externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      };
     case allServicesConfig:
       return {
         // todo: apply env.js to all service entries
@@ -119,14 +159,15 @@ const generateConfig = () => {
         output: {
           filename: `[name]`,
           path: getServicesPath(),
-          environment: codeEngineEnvironment
-        }
-      }
+          environment: codeEngineEnvironment,
+        },
+      };
     case serviceConfig:
       return {
         entry: {
           index: [
             path.resolve(__dirname, "polyfills/env.js"),
+            "@babel/polyfill",
             `${getServicePath(service, true)}/${service}`,
           ],
         },
@@ -134,36 +175,38 @@ const generateConfig = () => {
           new webpack.ProvidePlugin({
             process: path.resolve(__dirname, "polyfills/process.js"),
             setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
+            Buffer: ["buffer", "Buffer"],
+            window: path.resolve(__dirname, "polyfills/window.js"),
+            Blob: ["blob-polyfill", "Blob"],
           }),
         ],
         output: {
           filename: `${service}.js`,
           path: getServicePath(service),
-          environment: codeEngineEnvironment
-        }
-      }
-      // todo: apply entry and plugins to libraries
+          environment: codeEngineEnvironment,
+        },
+      };
+    // todo: apply entry and plugins to libraries
     case allLibrariesConfig:
       return {
         entry: getAllLibrariesEntries(),
         output: {
           filename: `[name]`,
           path: getLibrariesPath(),
-          environment: codeEngineEnvironment
-        }
-      }
+          environment: codeEngineEnvironment,
+        },
+      };
     case libraryConfig:
       return {
         entry: `${getLibraryPath(library, true)}/${library}`,
         output: {
           filename: `${library}.js`,
           path: getLibraryPath(library),
-          environment: codeEngineEnvironment
-        }
-      }
-    }
+          environment: codeEngineEnvironment,
+        },
+      };
   }
-  
+};
 
 const baseConfig = {
   name: configName,
@@ -173,39 +216,46 @@ const baseConfig = {
         test: /\.tsx?$|\.jsx?$/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env"]
-        }
+          presets: ["@babel/preset-env"],
+        },
       },
       {
         test: /\.js$/,
         use: ["source-map-loader"],
-        enforce: "pre"
-      }
-    ]
+        enforce: "pre",
+      },
+    ],
   },
   resolve: {
     extensions: allFileTypes,
     fallback: {
-      assert: require.resolve('assert/'),
-      util: require.resolve('util/'),
-      path: 'path-browserify',
-      crypto: 'crypto-browserify',
-      buffer: 'buffer',
-      stream: 'stream-browserify',
+      assert: require.resolve("assert/"),
+      util: require.resolve("util/"),
+      path: "path-browserify",
+      crypto: "crypto-browserify",
+      buffer: "buffer",
+      stream: "stream-browserify",
+      url: "url",
+      http: path.resolve(__dirname, "polyfills/http/index.js"),
+      https: path.resolve(__dirname, "polyfills/https/index.js"),
       child_process: false,
-      url: 'url',
-      http: path.resolve(__dirname, 'polyfills/http/index.js'),
-      https: path.resolve(__dirname, 'polyfills/https/index.js'),
+      dns: false,
+      fs: false,
+      net: false,
+      os: false,
+      tls: false,
+      vm: false,
+      zlib: false,
     },
     // ignore the browser field when processing an npm's package.json, if it exists
-    aliasFields: []
+    aliasFields: [],
   },
   optimization: {
-    minimize: false
-  }
-}
+    minimize: false,
+  },
+};
 
 module.exports = {
   ...baseConfig,
-  ...generateConfig()
+  ...generateConfig(),
 };
