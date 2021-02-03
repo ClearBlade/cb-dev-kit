@@ -34,7 +34,7 @@ module.exports = {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.10.4",
-    "@types/clearbladejs-server": "^1.1.1",
+    "@clearblade/code-service-types": "^1.7.0",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.2",
     "@types/react": "^16.8.10",
