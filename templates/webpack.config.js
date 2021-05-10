@@ -246,6 +246,8 @@ const baseConfig = {
       tls: false,
       vm: false,
       zlib: false,
+      tty: path.resolve(__dirname, "polyfills/tty.js"),
+      module: false,
     },
     // ignore the browser field when processing an npm's package.json, if it exists
     aliasFields: [],
