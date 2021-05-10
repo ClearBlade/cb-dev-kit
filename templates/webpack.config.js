@@ -194,7 +194,7 @@ const generateConfig = () => {
       return createConfigForCodeAssets(
         () => `${getServicePath(service, true)}/${service}`,
         () => `${service}.js`,
-        getServicePath(service)
+        () => getServicePath(service)
       );
     // todo: apply entry and plugins to libraries
     case allLibrariesConfig:
@@ -210,7 +210,7 @@ const generateConfig = () => {
       return createConfigForCodeAssets(
         () => `${getLibraryPath(library, true)}/${library}`,
         () => `${library}.js`,
-        getLibraryPath(library)
+        () => getLibraryPath(library)
       );
   }
 };
