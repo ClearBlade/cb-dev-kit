@@ -61,6 +61,34 @@ const codeEngineEnvironment = {
   module: false,
 };
 
+const createConfigForCodeAssets = (
+  getEntryPath,
+  getOutputFilename,
+  getOutputPath
+) => ({
+  entry: {
+    index: [
+      path.resolve(__dirname, "polyfills/env.js"),
+      "@babel/polyfill",
+      getEntryPath(),
+    ],
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: path.resolve(__dirname, "polyfills/process.js"),
+      setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
+      Buffer: ["buffer", "Buffer"],
+      window: path.resolve(__dirname, "polyfills/window.js"),
+      Blob: ["blob-polyfill", "Blob"],
+    }),
+  ],
+  output: {
+    filename: getOutputFilename(),
+    path: getOutputPath(),
+    environment: codeEngineEnvironment,
+  },
+});
+
 // add or override configuration options here
 const generateConfig = () => {
   switch (configName) {
@@ -163,29 +191,11 @@ const generateConfig = () => {
         },
       };
     case serviceConfig:
-      return {
-        entry: {
-          index: [
-            path.resolve(__dirname, "polyfills/env.js"),
-            "@babel/polyfill",
-            `${getServicePath(service, true)}/${service}`,
-          ],
-        },
-        plugins: [
-          new webpack.ProvidePlugin({
-            process: path.resolve(__dirname, "polyfills/process.js"),
-            setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
-            Buffer: ["buffer", "Buffer"],
-            window: path.resolve(__dirname, "polyfills/window.js"),
-            Blob: ["blob-polyfill", "Blob"],
-          }),
-        ],
-        output: {
-          filename: `${service}.js`,
-          path: getServicePath(service),
-          environment: codeEngineEnvironment,
-        },
-      };
+      return createConfigForCodeAssets(
+        () => `${getServicePath(service, true)}/${service}`,
+        () => `${service}.js`,
+        getServicePath(service)
+      );
     // todo: apply entry and plugins to libraries
     case allLibrariesConfig:
       return {
@@ -197,14 +207,11 @@ const generateConfig = () => {
         },
       };
     case libraryConfig:
-      return {
-        entry: `${getLibraryPath(library, true)}/${library}`,
-        output: {
-          filename: `${library}.js`,
-          path: getLibraryPath(library),
-          environment: codeEngineEnvironment,
-        },
-      };
+      return createConfigForCodeAssets(
+        () => `${getLibraryPath(library, true)}/${library}`,
+        () => `${library}.js`,
+        getLibraryPath(library)
+      );
   }
 };
 
