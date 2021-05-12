@@ -1,7 +1,6 @@
 const getFilesFromDir = require("./getFilesFromDir");
 
 const createEntryObject = (path, allowedTypes, parentDir) => {
-  console.log("createEntryObject", path, allowedTypes, parentDir);
   const allFiles = getFilesFromDir(path, allowedTypes);
   return allFiles.reduce((allEntries, srcName) => {
     const resultName = `${srcName.slice(
