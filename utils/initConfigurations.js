@@ -42,6 +42,7 @@ module.exports = {
     "babel-loader": "^8.0.5",
     chalk: "^4.0.0",
     chokidar: "^3.3.1",
+    "core-js": "^3.19.3",
     jest: "^25.4.0",
     "jest-cli": "^25.4.0",
     "npm-run-all": "^4.1.5",
