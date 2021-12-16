@@ -256,6 +256,7 @@ const baseConfig = {
       zlib: false,
       tty: path.resolve(__dirname, "polyfills/tty.js"),
       module: false,
+      querystring: require.resolve("querystring-es3"),
     },
     // ignore the browser field when processing an npm's package.json, if it exists
     aliasFields: [],

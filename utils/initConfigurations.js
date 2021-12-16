@@ -67,6 +67,7 @@ module.exports = {
     url: "^0.11.0",
     util: "^0.12.3",
     xtend: "^4.0.2",
+    "querystring-es3": "^0.2.1",
   },
   babel: {
     presets: [
