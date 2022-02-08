@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const error = require('../templates/error');
 const initConfigs = require('../utils/initConfigurations');
+const ncp = require('ncp').ncp;
 
 module.exports = {
   generatePackageJson: (originalPackageJson) => {
@@ -12,9 +13,13 @@ module.exports = {
         ...originalPackageJson.scripts,
         ...initConfigs.scripts
       },
+      dependencies: {
+        ...originalPackageJson.dependencies,
+        ...initConfigs.dependencies,
+      },
       devDependencies: {
         ...originalPackageJson.devDependencies,
-        ...initConfigs.packages
+        ...initConfigs.devDependencies
       },
       babel: {
         ...originalPackageJson.babel,
@@ -61,13 +66,9 @@ module.exports = {
       fs.mkdirSync(path.resolve(`./.cb-dev-kit`));
     };
 
-    const templates = fs.readdirSync(path.join(__dirname, '../templates'));
-    for (const file in templates) {
-      const content = fs.readFileSync(path.join(__dirname, `../templates/${templates[file]}`).toString());
-      fs.writeFileSync(path.resolve(`./.cb-dev-kit/${templates[file]}`), content, function (err) {
-        if (err) error(err);
-      });
-    }
+    ncp(path.resolve(__dirname, '../templates'), path.resolve('./.cb-dev-kit'), function(err) {
+      if (err) error(err);
+    })
 
     const srcPath = path.resolve(`./src`);
     if (!fs.existsSync(srcPath)) {
