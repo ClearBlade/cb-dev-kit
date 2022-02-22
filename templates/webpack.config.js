@@ -252,7 +252,7 @@ const baseConfig = {
       child_process: false,
       dns: false,
       fs: false,
-      net: false,
+      net: path.resolve(__dirname, "polyfills/net/index.js"),
       os: false,
       tls: path.resolve(__dirname, "polyfills/tls/index.js"),
       vm: false,
