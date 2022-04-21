@@ -1,0 +1,9 @@
+{
+    "auth": true,
+    "description": "",
+    "messaging_url": "localhost.clearblade.com:1883",
+    "name": "test",
+    "platform_url": "https://localhost.clearblade.com",
+    "system_key": "d084d19b0cf4a7fa96dec2a2ec71",
+    "system_secret": "D084D19B0CACE892BDB88780A35F"
+}
