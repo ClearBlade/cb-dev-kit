@@ -52,7 +52,7 @@ module.exports = {
     "ts-jest": "^25.4.0",
     typescript: "^3.3.3",
     webpack: "^5.1.0",
-    "webpack-cli": "^3.3.0",
+    "webpack-cli": "^4.9.2",
   },
   dependencies: {
     assert: "^2.0.0",
