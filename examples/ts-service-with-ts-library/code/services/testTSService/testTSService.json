@@ -1,0 +1,12 @@
+{
+  "auto_balance": false,
+  "auto_restart": false,
+  "concurrency": 0,
+  "dependencies": "log,testTSLibrary",
+  "execution_timeout": 60,
+  "logging_enabled": true,
+  "name": "testTSService",
+  "params": [""],
+  "preload": false,
+  "run_user": ""
+}
