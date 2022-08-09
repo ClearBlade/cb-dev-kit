@@ -62,6 +62,7 @@ module.exports = {
     "crypto-browserify": "^3.12.0",
     "form-data": "^3.0.0",
     "path-browserify": "^1.0.1",
+    "polyfill-crypto.getrandomvalues": "^1.0.0",
     "stream-browserify": "^3.0.0",
     "readable-stream": "2.3.7",
     url: "^0.11.0",
