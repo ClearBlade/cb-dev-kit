@@ -1,6 +1,6 @@
 const process = {
   __FAKE_PROCESS__: true,
-  version: "v0.10",
+  version: "16.15.1",
   nextTick: function (cb) {
     setTimeout(cb, 0);
   },
