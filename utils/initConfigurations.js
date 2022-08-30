@@ -58,6 +58,7 @@ module.exports = {
     assert: "^2.0.0",
     buffer: "^5.6.0",
     "blob-polyfill": "^4.0.20200601",
+    "browser-hrtime": "1.1.8",
     "builtin-status-codes": "^3.0.0",
     "crypto-browserify": "^3.12.0",
     "form-data": "^3.0.0",

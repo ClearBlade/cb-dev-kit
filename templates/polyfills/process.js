@@ -1,4 +1,7 @@
+const hrtime = require("browser-hrtime");
+
 const process = {
+  hrtime,
   __FAKE_PROCESS__: true,
   version: "16.15.1",
   nextTick: function (cb) {

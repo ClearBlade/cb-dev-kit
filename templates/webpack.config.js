@@ -75,10 +75,10 @@ const createConfigForCodeAssets = (
   },
   plugins: [
     new webpack.ProvidePlugin({
+      window: path.resolve(__dirname, "polyfills/window.js"),
       process: path.resolve(__dirname, "polyfills/process.js"),
       setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
       Buffer: ["buffer", "Buffer"],
-      // window: path.resolve(__dirname, "polyfills/window.js"),
       // Blob: ["blob-polyfill", "Blob"],
     }),
   ],
