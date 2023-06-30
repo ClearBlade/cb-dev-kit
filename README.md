@@ -14,10 +14,10 @@ Examples are located in this repo in the [examples folder](https://github.com/Cl
 
 CB Dev Kit currently supports the transpilation of the following asset types:
 
-- Code services: JS and TS
-- Code libraries: JS and TS
-- Internal resources (in portals): JS, TS, TSX, and JSX
-- Widget parsers (in portals): JS, TS, TSX, and JSX
+- Code services: js and ts
+- Code libraries: js and ts
+- Internal resources (in portals): js, ts, tsx, and jsx
+- Widget parsers (in portals): js, ts, tsx, and jsx
 
 ## Prereqs
 
@@ -87,7 +87,7 @@ There are two ways to set up an asset in an src directory:
 - No need to look up flags and asset names/IDs
 - Selection of all asset types that can be created in an src folder
 - Selection of all specific assets for each type
-- Selection of file types available for the asset (JS, TS, JSX, TSX)
+- Selection of file types available for the asset (js, ts, jsx, tsx)
 - Prompt for auto-generating adjacent unit test file for the generated file
 - Prompt for auto-generating a React component template for HTML widgets
 
@@ -109,10 +109,10 @@ cb-dev-kit create <options>
 | ---------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | portal           | Portal name                                                                                   |
 | widgetId         | Widget ID, source will include all available parsers                                          | `cb-dev-kit create -portal=<portalname> -widgetId=<widgetId>`                 |
-| internalResource | Internal resource name (including extension)                                                  | `cb-dev-kit create -portal=<portalname> -internalResource=<internalResource>` |
-| service          | Service name (without file extension)                                                         | `cb-dev-kit create -service=<serviceName> -type=ts`                           |
-| library          | Library name (without file extension)                                                         | `cb-dev-kit create -library=<libraryName> -type=ts`                           |
-| type             | (optional) file type of new source file. Options include JS, JSX, TS, and TSX. Defaults to JS | `cb-dev-kit create -portal=<portalname> -widgetId=<widgetId> -type=tsx`       |
+| internalResource | internal resource name (including extension)                                                  | `cb-dev-kit create -portal=<portalname> -internalResource=<internalResource>` |
+| service          | service name (without file extension)                                                         | `cb-dev-kit create -service=<serviceName> -type=ts`                           |
+| library          | library name (without file extension)                                                         | `cb-dev-kit create -library=<libraryName> -type=ts`                           |
+| type             | (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js | `cb-dev-kit create -portal=<portalname> -widgetId=<widgetId> -type=tsx`       |
 | unitTests        | (optional) set to true to include an adjacent auto-generated unit test file                   | `cb-dev-kit create -service=<serviceName> -type=ts -unitTests=true`           |
 
 ### build
@@ -177,7 +177,7 @@ cb-dev-kit clearblade-hot-reload start
 
 ### Configuration
 
-- `cb-dev-kit init` will automatically install Jest and provide the Jest configuration in your system's package.json to check the src directory for test files, including Babel configurations for JSX and TSX files.
+- `cb-dev-kit init` will automatically install jest and provide the jest configuration in your system's package.json to check the src directory for test files, including babel configurations for jsx and tsx files.
 
 - `cb-dev-kit init` will also automatically create a setupTests.ts file in src that provides a boilerplate for mocking out global objects for libraries to be used in code services and libraries.
 
