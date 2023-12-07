@@ -5,7 +5,6 @@ import flagConsts from '../templates/flagConsts.js';
 const spawn = child_process.spawnSync
 
 export default (args) => {
-  // reliant on portals starting with p, services starting with s, etc...
   if (args[flagConsts.portal] || args.p) {
     let script = `npm run start:clearblade-hot-reload --portal=${args[flagConsts.portal] ? args[flagConsts.portal] : args.p}`;
     if (args[flagConsts.messagePort]) {

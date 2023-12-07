@@ -107,11 +107,11 @@ cb-dev-kit create <options>
 
 | Option Short Name | Option Long Name | Overview | Example |
 | ---------- | --------- | -------- | ------- |
-| p | portal    | Portal name  | <ul><li>`cb-dev-kit create --portal=<portalname>`</li><li>`cb-dev-kit create -p <portalname>`</li></ul> |
+| p | portal    | Portal name  | |
 | w | widgetId  | ID of widget, source will include all available parsers  | <ul><li>`cb-dev-kit create --portal=<portalname> --widgetId=<widgetId>`</li><li>`cb-dev-kit create -p <portalname> -w <widgetId>`</li></ul> |
 | i | internalResource | Name of internal resource (including extension) | <ul><li>`cb-dev-kit create --portal=<portalname> --internalResource=<internalResource>`</li><li>`cb-dev-kit create -p <portalname> -i <internalResource>`</li></ul> |
-| s | service   | Name of service (without file extension) | <ul><li>`cb-dev-kit build --service=<serviceName>`</li><li>`cb-dev-kit build -s <serviceName>`</li></ul> |
-| l | library   | Name of library (without file extension) |  <ul><li>`cb-dev-kit build --library=<libraryName>`</li><li>`cb-dev-kit build -l <libraryName>`</li></ul> |
+| s | service   | Name of service (without file extension) | <ul><li>`cb-dev-kit create --service=<serviceName> --type=tsx`</li><li>`cb-dev-kit create -s <serviceName> -t tsx`</li></ul> |
+| l | library   | Name of library (without file extension) |  <ul><li>`cb-dev-kit create --library=<libraryName> --type=tsx`</li><li>`cb-dev-kit create -l <libraryName> -t tsx`</li></ul> |
 | t | type      | (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js | <ul><li>`cb-dev-kit create --portal=<portalname> --widgetId=<widgetId> --type=tsx`</li><li>`cb-dev-kit create -p <portalname> -w <widgetId> -t tsx`</li></ul> |
 | u | unitTests | (optional) set to true to include an adjacent auto-generated unit test file | <ul><li>`cb-dev-kit create --service=<serviceName> --type=ts --unitTests=true`</li><li>`cb-dev-kit create -s <serviceName> -t ts -u true`</li></ul> |
 
@@ -166,12 +166,12 @@ npm i --save-dev @clearblade/clearblade-hot-reload
 cb-dev-kit clearblade-hot-reload start
 ```
 
-| Flag        | Overview                                                                                                                                         | Example                  |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ |
-| portal      | Portal name                                                                                                                                      | --portal=\<portalName>    |
-| messagePort | Should be set to the same -messagePort the console is running on. Defaults to 1883.                                                              | -messagePort=1884        |
-| noSSL       | Disables SSL for non-TLS connections on local systems. If on a production system with TLS enabled, ignore this flag and set -messagePort to 1884 | -noSSL=true              |
-| caPath      | If pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA. | -caPath=/\*/\*/\*/ca.pem |
+| Option Short Name | Option Long Name | Overview | Example |
+| ------------- | --------- | -------- | ------- |
+| p | portal    | Portal name | <ul><li>`cb-dev-kit clearblade-hot-reload start --portal=<portalName>`</li><li>`cb-dev-kit clearblade-hot-reload start -p <portalName>`</li></ul> |
+| | messagePort | Should be set to the same --messagePort the console is running on. Defaults to 1883. | `cb-dev-kit clearblade-hot-reload start --portal=<portalName> --messagePort=1884` |
+| | noSSL       | Disables SSL for non-TLS connections on local systems. If on a production system with TLS enabled, ignore this flag and set --messagePort to 1884 | `cb-dev-kit clearblade-hot-reload start --noSSL=true` |
+| | caPath      | If pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA. | `cb-dev-kit clearblade-hot-reload start --caPath=/\*/\*/\*/ca.pem` |
 
 ## Running Tests
 
