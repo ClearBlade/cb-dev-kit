@@ -25,4 +25,4 @@ Object.prototype.toString = function () {
   return originalToString.call(this);
 };
 
-module.exports = process;
+export default process;

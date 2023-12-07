@@ -1,18 +1,17 @@
-if (process.env.cwd) {
-  process.chdir(process.env.cwd);
-}
+import { widgetId, react } from '../templates/flagConsts.js';
+import widgetGenerator from '../generators/widget.js';
+import internalResourceGenerator from '../generators/internalResource.js';
+// export datasourceGenerator = from '../generators/datasource.js';
+import codeServiceGenerator from '../generators/codeService.js';
+import libraryGenerator from '../generators/library.js';
 
-const { widgetId, react } = require('../templates/flagConsts');
+import shell from 'shelljs';
 
-const widgetGenerator = require('../generators/widget');
-const internalResourceGenerator = require('../generators/internalResource');
-// const datasourceGenerator = require('../generators/datasource');
-const codeServiceGenerator = require('../generators/codeService');
-const libraryGenerator = require('../generators/library');
+export default (plop) => {
+  if (process.env.cwd) {
+    process.chdir(process.env.cwd);
+  }
 
-const shell = require('shelljs');
-
-module.exports = (plop) => {
   plop.setActionType('createFile', function (answers) {
     if (answers.hasOwnProperty(widgetId)) {
       answers[widgetId] = answers[widgetId].split('_').pop();
@@ -24,7 +23,7 @@ module.exports = (plop) => {
     }
     let cmd = `cb-dev-kit create`;
     for (const flag in answers) {
-      cmd += ` -${flag}=${answers[flag]}`;
+      cmd += ` --${flag}=${answers[flag]}`;
     }
     shell.exec(cmd)
   });

@@ -1,8 +1,8 @@
-const { getPortals, getInternalResources } = require('../templates/getAssets');
-const { portalTypes } = require('../templates/configConsts');
-const { portal, internalResource, type, unitTests } = require('../templates/flagConsts');
+import { getPortals, getInternalResources } from '../templates/getAssets.js';
+import { portalTypes } from '../templates/configConsts.js';
+import { portal, internalResource, type, unitTests } from '../templates/flagConsts.js';
 
-module.exports = {
+export default {
   description: `add an internal resource to the src directory`,
   prompts: [
     {

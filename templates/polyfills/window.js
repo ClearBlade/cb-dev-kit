@@ -4,4 +4,4 @@ const window = {
   // FormData: myFormData,
 };
 
-module.exports = window;
+export default window;

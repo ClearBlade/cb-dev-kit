@@ -1,4 +1,4 @@
-const getFilesFromDir = require("./getFilesFromDir");
+import getFilesFromDir from './getFilesFromDir.js';
 
 const createEntryObject = (path, allowedTypes, parentDir) => {
   const allFiles = getFilesFromDir(path, allowedTypes);
@@ -11,6 +11,6 @@ const createEntryObject = (path, allowedTypes, parentDir) => {
   }, {});
 };
 
-module.exports = {
+export default {
   createEntryObject,
 };

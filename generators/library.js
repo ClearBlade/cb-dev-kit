@@ -1,8 +1,8 @@
-const { getLibraries } = require('../templates/getAssets');
-const { codeTypes } = require('../templates/configConsts');
-const { library, type, unitTests } = require('../templates/flagConsts');
+import { getLibraries } from '../templates/getAssets.js';
+import { codeTypes } from '../templates/configConsts.js';
+import { library, type, unitTests } from '../templates/flagConsts.js';
 
-module.exports = {
+export default {
   description: `add a library to the src directory`,
   prompts: [
     {

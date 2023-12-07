@@ -1,8 +1,8 @@
-var ClientRequest = require("./lib/request");
-var response = require("./lib/response");
-var extend = require("xtend");
-var statusCodes = require("builtin-status-codes");
-var url = require("url");
+import ClientRequest from './lib/request.js';
+import response from './lib/response.js';
+import extend from 'xtend';
+import statusCodes from 'builtin-status-codes';
+import url from 'url';
 
 var http = exports;
 

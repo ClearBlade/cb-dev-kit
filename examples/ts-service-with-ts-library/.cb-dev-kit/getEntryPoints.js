@@ -1,6 +1,6 @@
-const fs = require("fs");
-const error = require("./error");
-const {
+import fs from 'fs';
+import error from './error.js';
+import {
   getLibrariesPath,
   getServicesPath,
   getWidgetsPath,
@@ -8,12 +8,12 @@ const {
   getWidgetPath,
   getPortalConfigPath,
   getAllPath,
-} = require("./getAssets");
-const { allFileTypes, portalTypes, codeTypes } = require("./configConsts");
-const { createEntryObject } = require("./createEntryObject");
-const path = require("path");
+} from './getAssets.js';
+import { allFileTypes, portalTypes, codeTypes } from './configConsts.js';
+import { createEntryObject } from './createEntryObject.js';
+import path from 'path';
 
-module.exports = {
+export default {
   getAllEntries: () => {
     const allPath = getAllPath(true);
     if (fs.existsSync(allPath)) {

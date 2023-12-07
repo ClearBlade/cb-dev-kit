@@ -1,1 +1,1 @@
-module.exports = cb_node.net;
+export default cb_node.net;

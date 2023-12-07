@@ -1,1 +1,1 @@
-module.exports = cb_node.tls;
+export default cb_node.tls;

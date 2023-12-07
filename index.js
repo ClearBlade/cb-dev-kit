@@ -1,43 +1,55 @@
-const minimist = require('minimist');
-const path = require('path');
-const fs = require('fs');
+import minimist from 'minimist';
+import path from 'path';
+import fs from 'fs';
+import error from './templates/error.js';
+import shell from 'shelljs';
+import child_process from 'child_process';
+import escape from './utils/escapePathName.js';
 
-const error = require('./templates/error');
-const shell = require('shelljs');
-const spawn = require('child_process').spawnSync;
-const escape = require('./utils/escapePathName');
+import init from './cmds/init.js';
+import create from './cmds/create.js';
+import build from './cmds/build.js';
+import clearbladeHotReload from './cmds/clearblade-hot-reload.js';
+import version from './cmds/version.js';
+import help from './cmds/help.js';
+import { fileURLToPath } from 'url';
 
-module.exports = () => {
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
+
+const spawn = child_process.spawnSync;
+
+export default () => {
   if (fs.existsSync(path.resolve('./system.json'))) {
     const args = minimist(process.argv.slice(2))
 
     let cmd = args._[0] || 'help';
     
     const cwd = escape(process.cwd());
-  
+
     switch (cmd) {
       case 'init':
-        require('./cmds/init').default(args)
+        init.default(args);
         break
   
       case 'create':
-        require('./cmds/create')(args)
+        create(args);
         break
   
       case 'build':
-        require('./cmds/build')(args)
+        build(args);
         break
   
       case 'clearblade-hot-reload':
-        require('./cmds/clearblade-hot-reload')(args)
+        clearbladeHotReload(args);
         break
   
       case 'version':
-        require('./cmds/version')(args)
+        version(args);
         break
   
       case 'help':
-        require('./cmds/help')(args)
+        help(args);
         break
       
       case 'generate':

@@ -1,1 +1,1 @@
-module.exports = cb_node.stream;
+export default cb_node.stream;

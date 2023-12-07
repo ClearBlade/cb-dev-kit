@@ -1,5 +1,5 @@
-module.exports = {
-  generateJs: (name) => `import React from 'react';
+
+export const generateJs = (name) => `import React from 'react';
 import ReactDOM from 'react-dom';
 
 class ${name} extends React.Component {
@@ -11,6 +11,11 @@ class ${name} extends React.Component {
 }
 
 ReactDOM.render(<${name} />, document.getElementById('${name}-react-widget'));
-export default ${name};`,
-  generateHTML: (name) => `<div id='${name}-react-widget'></div>`
-}
+export default ${name};`
+
+export const generateHTML = (name) => `<div id='${name}-react-widget'></div>`
+
+export default {
+  generateJs: generateJs,
+  generateHTML: generateHTML
+};

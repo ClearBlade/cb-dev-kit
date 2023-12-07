@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   scripts: {
     "build:all":
       "webpack --config .cb-dev-kit/webpack.config.js --config-name all",

@@ -1,7 +1,7 @@
-const { getPortals, getDatasources } = require('../templates/getAssets');
-const { portal, datasource, type, unitTests } = require('../templates/flagConsts');
+import { getPortals, getDatasources } from '../templates/getAssets.js';
+import { portal, datasource, type, unitTests } from '../templates/flagConsts.js';
 
-module.exports = {
+export default {
   description: `add a datasource parser to the src directory`,
   prompts: [
     {

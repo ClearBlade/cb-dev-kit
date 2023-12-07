@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // only want to return index for widgets and root service/library/intResource names
 const confirmNameForType = (filePath) => {
@@ -10,7 +10,7 @@ const confirmNameForType = (filePath) => {
     (filePath.includes(path.join('code', 'services', fileName)))
 };
 
-module.exports = (dir, fileTypes) => {
+export default (dir, fileTypes) => {
   var filesToReturn = [];
   function walkDir(currentPath) {
     var files = fs.readdirSync(currentPath);

@@ -1,1 +1,1 @@
-module.exports = cb_node.events;
+export default cb_node.events;

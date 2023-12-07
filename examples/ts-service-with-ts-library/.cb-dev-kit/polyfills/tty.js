@@ -4,4 +4,4 @@ const tty = {
   },
 };
 
-module.exports = tty;
+export default tty;
