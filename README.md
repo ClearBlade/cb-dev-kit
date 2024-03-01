@@ -27,7 +27,7 @@ CB Dev Kit currently supports the transpilation of the following asset types:
 
 1. If you haven't already, export your system to your local environment using:
 
-- [ClearBlade Developer Console](https://docs.clearblade.com/v/4/console/) or
+- [ClearBlade Developer Console](https://clearblade.atlassian.net/wiki/spaces/IoT/pages/2343796752/Console) or
 - [cb-cli tool](https://github.com/ClearBlade/cb-cli#export):
 
 ```
