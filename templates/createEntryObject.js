@@ -1,6 +1,6 @@
-const getFilesFromDir = require("./getFilesFromDir");
+import getFilesFromDir from './getFilesFromDir.js';
 
-const createEntryObject = (path, allowedTypes, parentDir) => {
+export const createEntryObject = (path, allowedTypes, parentDir) => {
   const allFiles = getFilesFromDir(path, allowedTypes);
   return allFiles.reduce((allEntries, srcName) => {
     const resultName = `${srcName.slice(
@@ -11,6 +11,6 @@ const createEntryObject = (path, allowedTypes, parentDir) => {
   }, {});
 };
 
-module.exports = {
+export default {
   createEntryObject,
 };

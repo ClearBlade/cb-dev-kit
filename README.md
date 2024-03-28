@@ -105,15 +105,16 @@ cb-dev-kit generate
 cb-dev-kit create <options>
 ```
 
-| Flag             | Overview                                                                                      | Example                                                                       |
-| ---------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| portal           | Portal name                                                                                   |
-| widgetId         | Widget ID, source will include all available parsers                                          | `cb-dev-kit create -portal=<portalname> -widgetId=<widgetId>`                 |
-| internalResource | internal resource name (including extension)                                                  | `cb-dev-kit create -portal=<portalname> -internalResource=<internalResource>` |
-| service          | service name (without file extension)                                                         | `cb-dev-kit create -service=<serviceName> -type=ts`                           |
-| library          | library name (without file extension)                                                         | `cb-dev-kit create -library=<libraryName> -type=ts`                           |
-| type             | (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js | `cb-dev-kit create -portal=<portalname> -widgetId=<widgetId> -type=tsx`       |
-| unitTests        | (optional) set to true to include an adjacent auto-generated unit test file                   | `cb-dev-kit create -service=<serviceName> -type=ts -unitTests=true`           |
+| Option Short Name | Option Long Name | Overview | Example |
+| ---------- | --------- | -------- | ------- |
+| p | portal    | Portal name  | |
+| w | widgetId  | ID of widget, source will include all available parsers  | <ul><li>`cb-dev-kit create --portal=<portalname> --widgetId=<widgetId>`</li><li>`cb-dev-kit create -p <portalname> -w <widgetId>`</li></ul> |
+| i | internalResource | Name of internal resource (including extension) | <ul><li>`cb-dev-kit create --portal=<portalname> --internalResource=<internalResource>`</li><li>`cb-dev-kit create -p <portalname> -i <internalResource>`</li></ul> |
+| s | service   | Name of service (without file extension) | <ul><li>`cb-dev-kit create --service=<serviceName> --type=tsx`</li><li>`cb-dev-kit create -s <serviceName> -t tsx`</li></ul> |
+| l | library   | Name of library (without file extension) |  <ul><li>`cb-dev-kit create --library=<libraryName> --type=tsx`</li><li>`cb-dev-kit create -l <libraryName> -t tsx`</li></ul> |
+| t | type      | (optional) file type of new source file. Options include js, jsx, ts, and tsx. Defaults to js | <ul><li>`cb-dev-kit create --portal=<portalname> --widgetId=<widgetId> --type=tsx`</li><li>`cb-dev-kit create -p <portalname> -w <widgetId> -t tsx`</li></ul> |
+| u | unitTests | (optional) set to true to include an adjacent auto-generated unit test file | <ul><li>`cb-dev-kit create --service=<serviceName> --type=ts --unitTests=true`</li><li>`cb-dev-kit create -s <serviceName> -t ts -u true`</li></ul> |
+
 
 ### build
 
@@ -123,18 +124,18 @@ Builds an asset or multiple assets from an src directory into its respective sys
 cb-dev-kit build <options>
 ```
 
-| Flag             | Overview                                                         | Example                                                                      |
-| ---------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| portal           | Portal name. Builds all portal internal resources and widgets    | `cb-dev-kit build -portal=<portalname>`                                      |
-| widgetId         | Widget ID. Builds all parsers in widget                          | `cb-dev-kit build -portal=<portalname> -widgetId=<widgetId>`                 |
-| internalResource | Internal resource name (including extension)                     | `cb-dev-kit build -portal=<portalname> -internalResource=<internalResource>` |
-| service          | Service name (without file extension)                            | `cb-dev-kit build -service=<servicename> -type=ts`                           |
-| library          | Library name (without file extension)                            | `cb-dev-kit build -library=<libraryname> -type=ts`                           |
-| all              | Builds all assets in src directory                               | `cb-dev-kit build -all`                                                      |
-| all-services     | Builds all services in src directory                             | `cb-dev-kit build -all-services`                                             |
-| all-libraries    | Builds all libraries in src directory                            | `cb-dev-kit build -all-libraries`                                            |
-| all-portals      | Builds all portals in src directory                              | `cb-dev-kit build -all-portals`                                              |
-| all-widgets      | Builds all widgets in a portal's directory                       | `cb-dev-kit build -all-widgets -portal=<portalname>`                         |
+| Option Short Name | Option Long Name | Overview | Example |
+| ---------- | --------- | -------- | ------- |
+| p | portal           | Portal name. Builds all internal resources and widgets in portal | <ul><li>`cb-dev-kit build --portal=<portalname>`</li><li>`cb-dev-kit build -p <portalname>`</li></ul> |
+| w | widgetId         | ID of widget. Builds all parsers in widget  | <ul><li>`cb-dev-kit build --portal=<portalname> --widgetId=<widgetId>`</li><li>`cb-dev-kit build -p <portalname> -w <widgetId>`</li></ul> |
+| i | internalResource | Name of internal resource (including extension) | <ul><li>`cb-dev-kit build --portal=<portalname> --internalResource=<internalResource>`</li><li>`cb-dev-kit build -p <portalname> -i <internalResource>`</li></ul> |
+| s | service          | Name of service (without file extension)  | <ul><li>`cb-dev-kit build --service=<servicename> --type=ts`</li><li>`cb-dev-kit build -s <servicename> -t ts`</li></ul>  |
+| l | library          | Name of library (without file extension)  | <ul><li>`cb-dev-kit build --library=<libraryname> --type=ts`</li><li>`cb-dev-kit build -l <libraryname> -type ts`</li></ul>     |
+| A | all                | Builds all assets in src directory | <ul><li>`cb-dev-kit build --all`</li><li>`cb-dev-kit build -A`</li></ul> |
+| S | all-services       | Builds all services in src directory | <ul><li>`cb-dev-kit build --all-services`</li><li>`cb-dev-kit build -S`</li></ul> |
+| L | all-libraries      | Builds all libraries in src directory | <ul><li>`cb-dev-kit build --all-libraries`</li><li>`cb-dev-kit build -L`</li></ul> |
+| P | all-portals        | Builds all portals in src directory | <ul><li>`cb-dev-kit build --all-portals`</li><li>`cb-dev-kit build -P`</li></ul> |
+| W | all-widgets        | Builds all widgets in a portal's directory | <ul><li>`cb-dev-kit build --all-widgets --portal=<portalname>`</li><li>`cb-dev-kit build -W -p <portalname>`</li></ul> |
 
 ### clearblade-hot-reload
 
@@ -166,12 +167,12 @@ npm i --save-dev @clearblade/clearblade-hot-reload
 cb-dev-kit clearblade-hot-reload start
 ```
 
-| Flag        | Overview                                                                                                                                         | Example                  |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ |
-| portal      | Portal name                                                                                                                                      | -portal=\<portalName>    |
-| messagePort | Should be set to the same -messagePort the console runs on. Defaults to 1883.                                                                    | -messagePort=1884        |
-| noSSL       | Disables SSL for non-TLS connections on local systems. If on a production system with TLS enabled, ignore this flag and set -messagePort to 1884 | -noSSL=true              |
-| caPath      | If pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA. | -caPath=/\*/\*/\*/ca.pem |
+| Option Short Name | Option Long Name | Overview | Example |
+| ------------- | --------- | -------- | ------- |
+| p | portal    | Portal name | <ul><li>`cb-dev-kit clearblade-hot-reload start --portal=<portalName>`</li><li>`cb-dev-kit clearblade-hot-reload start -p <portalName>`</li></ul> |
+| | messagePort | Should be set to the same --messagePort the console is running on. Defaults to 1883. | `cb-dev-kit clearblade-hot-reload start --portal=<portalName> --messagePort=1884` |
+| | noSSL       | Disables SSL for non-TLS connections on local systems. If on a production system with TLS enabled, ignore this flag and set --messagePort to 1884 | `cb-dev-kit clearblade-hot-reload start --noSSL=true` |
+| | caPath      | If pointing at a production system and your certificate authority is not DigiCert, you must use -caPath to provide the absolute path of your CA. | `cb-dev-kit clearblade-hot-reload start --caPath=/\*/\*/\*/ca.pem` |
 
 ## Running tests
 

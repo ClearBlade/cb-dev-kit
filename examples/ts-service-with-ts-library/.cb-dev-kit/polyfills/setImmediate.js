@@ -6,4 +6,4 @@ function setImmediate() {
   }, 0);
 }
 
-module.exports = setImmediate;
+export default setImmediate;

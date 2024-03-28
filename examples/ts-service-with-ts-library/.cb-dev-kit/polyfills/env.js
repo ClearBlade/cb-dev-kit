@@ -1,7 +1,7 @@
-// env.js
-Array.prototype.includes = function (val) {
-  return this.indexOf(val) > -1;
-};
+import getRandomValues from "polyfill-crypto.getrandomvalues";
+
+global.crypto = { getRandomValues };
+
 Number.isInteger =
   Number.isInteger ||
   function (value) {
@@ -13,20 +13,6 @@ Number.isInteger =
   };
 
 Reflect.construct = null;
-Array.prototype.values = function () {
-  var k,
-    a = [],
-    nextIndex = 0,
-    ary = this;
-  k = ary.length;
-  while (k > 0) a[--k] = ary[k];
-  a.next = function () {
-    return nextIndex < ary.length
-      ? { value: ary[nextIndex++], done: false }
-      : { done: true };
-  };
-  return a;
-};
 Array.prototype[Symbol.iterator] = Array.prototype.values;
 
 String.prototype[Symbol.iterator] = function () {

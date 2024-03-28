@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   serviceConfig: 'service',
   widgetConfig: 'widget',
   internalResourceConfig: 'internalResource',

@@ -1,8 +1,8 @@
-const { getPortals, getWidgets } = require('../templates/getAssets');
-const { portalTypes } = require('../templates/configConsts');
-const { portal, widgetId, type, unitTests, react } = require('../templates/flagConsts');
+import { getPortals, getWidgets } from '../templates/getAssets.js';
+import { portalTypes } from '../templates/configConsts.js';
+import { portal, widgetId, type, unitTests, react } from '../templates/flagConsts.js';
 
-module.exports = {
+export default {
   description: `add a widget's parser(s) to the src directory`,
   prompts: [
     {

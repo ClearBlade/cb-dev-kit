@@ -1,38 +1,45 @@
-const shell = require('shelljs');
-const fs = require('fs');
-const path = require('path');
-const error = require('../templates/error');
-const initConfigs = require('../utils/initConfigurations');
-const ncp = require('ncp').ncp;
+import shell from 'shelljs';
+import fs from 'fs';
+import {fileURLToPath} from 'url';
+import path from 'path';
+import error from '../templates/error.js';
+import initConfigs from '../utils/initConfigurations.js';
+import ncpPkg from 'ncp';
+const ncp = ncpPkg.ncp
 
-module.exports = {
-  generatePackageJson: (originalPackageJson) => {
-    const modifiedPackageJson = {
-      ...originalPackageJson,
-      scripts: {
-        ...originalPackageJson.scripts,
-        ...initConfigs.scripts
-      },
-      dependencies: {
-        ...originalPackageJson.dependencies,
-        ...initConfigs.dependencies,
-      },
-      devDependencies: {
-        ...originalPackageJson.devDependencies,
-        ...initConfigs.devDependencies
-      },
-      babel: {
-        ...originalPackageJson.babel,
-        ...initConfigs.babel
-      },
-      jest: {
-        ...originalPackageJson.jest,
-        ...initConfigs.jest
-      }
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export const generatePackageJson = (originalPackageJson) => {
+  const modifiedPackageJson = {
+    ...originalPackageJson,
+    type: "module",
+    scripts: {
+      ...originalPackageJson.scripts,
+      ...initConfigs.scripts
+    },
+    dependencies: {
+      ...originalPackageJson.dependencies,
+      ...initConfigs.dependencies,
+    },
+    devDependencies: {
+      ...originalPackageJson.devDependencies,
+      ...initConfigs.devDependencies
+    },
+    babel: {
+      ...originalPackageJson.babel,
+      ...initConfigs.babel
+    },
+    jest: {
+      ...originalPackageJson.jest,
+      ...initConfigs.jest
     }
+  }
 
-    return JSON.stringify(modifiedPackageJson);
-  },
+  return JSON.stringify(modifiedPackageJson);
+};
+
+export default {
+  generatePackageJson: generatePackageJson,
   default: () => {
     if (!fs.existsSync(path.resolve(`node_modules`))) {
       fs.appendFileSync('.gitignore', '\nnode_modules');
@@ -47,7 +54,7 @@ module.exports = {
 
     const packageJson = JSON.parse(fs.readFileSync(path.resolve(`package.json`)).toString());
 
-    fs.writeFileSync(path.resolve(`package.json`), module.exports.generatePackageJson(packageJson), function (err) {
+    fs.writeFileSync(path.resolve(`package.json`), generatePackageJson(packageJson), function (err) {
       if (err) error(err);
     });
 

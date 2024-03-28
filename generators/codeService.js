@@ -1,8 +1,8 @@
-const { getServices } = require('../templates/getAssets');
-const { codeTypes } = require('../templates/configConsts');
-const { service, type, unitTests } = require('../templates/flagConsts');
+import { getServices } from '../templates/getAssets.js';
+import { codeTypes } from '../templates/configConsts.js';
+import { service, type, unitTests } from '../templates/flagConsts.js';
 
-module.exports = {
+export default {
   description: `add a code service to the src directory`,
   prompts: [
     {

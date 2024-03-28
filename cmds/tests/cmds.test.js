@@ -1,4 +1,5 @@
-const generatePackageJson = require('../init').generatePackageJson
+import init from '../init.js';
+const generatePackageJson = init.generatePackageJson
 
 describe('cmds', () => {
     it('Should generate string for updated package.json', () => {

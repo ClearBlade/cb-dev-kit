@@ -1,7 +1,7 @@
-var capability = require("./capability");
-var inherits = require("inherits");
-var response = require("./response");
-var stream = require("readable-stream");
+import capability from './capability.js';
+import inherits from 'inherits';
+import response from './response.js';
+import stream from 'readable-stream';
 
 var IncomingMessage = response.IncomingMessage;
 var rStates = response.readyStates;

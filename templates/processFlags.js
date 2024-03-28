@@ -1,20 +1,22 @@
-const { portal, widgetId, internalResource, service, library, messagePort, noSSL, caPath } = require('./flagConsts');
-const { configName } = require('./processFlags');
-const { portalConfig, allWidgetsConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } = require('./configConsts');
+import flagConsts from './flagConsts.js';
+import processFlags from './processFlags.js';
+import { portalConfig, allWidgetsConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } from './configConsts.js';
+
+export const configName = process.argv[process.argv.indexOf('--config-name') + 1];
 
 const npmFlag = 'npm_config_';
 
 const mapEntityToWebpackConfig = (entity) => {
   switch (entity) {
-    case portal: 
+    case flagConsts.portal: 
       return [clearbladeHotReloadConfig, widgetConfig, internalResourceConfig, portalConfig, allWidgetsConfig];
-    case widgetId:
+    case flagConsts.widgetId:
       return [widgetConfig];
-    case internalResource:
+    case flagConsts.internalResource:
       return [internalResourceConfig];
-    case service:
+    case flagConsts.service:
       return [serviceConfig];
-    case library:
+    case flagConsts.library:
       return [libraryConfig];
     default: // used for messagePort, noSSL, and caPath because they have defaults to fall back to in clearblade-hot-reload
       return []
@@ -29,14 +31,23 @@ const getFlagValue = (entity) => {
   return val;
 }
 
-module.exports = {
-  portal: getFlagValue(portal),
-  widgetId: getFlagValue(widgetId),
-  internalResource: getFlagValue(internalResource) || '', // necessary for split in webpack config
-  service: getFlagValue(service),
-  library: getFlagValue(library),
-  messagePort: getFlagValue(messagePort),
-  noSSL: getFlagValue(noSSL),
-  caPath: getFlagValue(caPath),
-  configName: process.argv[process.argv.indexOf('--config-name') + 1]
+export const portal = getFlagValue(flagConsts.portal);
+export const widgetId = getFlagValue(flagConsts.widgetId);
+export const internalResource = getFlagValue(flagConsts.internalResource) || ''; // necessary for split in webpack config
+export const service = getFlagValue(flagConsts.service);
+export const library = getFlagValue(flagConsts.library);
+export const messagePort = getFlagValue(flagConsts.messagePort);
+export const noSSL = getFlagValue(flagConsts.noSSL);
+export const caPath = getFlagValue(flagConsts.caPath);
+
+export default {
+  portal: portal,
+  widgetId: widgetId,
+  internalResource: internalResource, // necessary for split in webpack config
+  service: service,
+  library: library,
+  messagePort: messagePort,
+  noSSL: noSSL,
+  caPath: caPath,
+  configName: configName
 }

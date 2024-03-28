@@ -1,6 +1,9 @@
+const hrtime = require("browser-hrtime");
+
 const process = {
+  hrtime,
   __FAKE_PROCESS__: true,
-  version: "v0.10",
+  version: "16.15.1",
   nextTick: function (cb) {
     setTimeout(cb, 0);
   },
@@ -22,4 +25,4 @@ Object.prototype.toString = function () {
   return originalToString.call(this);
 };
 
-module.exports = process;
+export default process;

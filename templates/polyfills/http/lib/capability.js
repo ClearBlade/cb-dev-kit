@@ -1,8 +1,6 @@
-exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
-
-exports.writableStream = isFunction(global.WritableStream)
-
-exports.abortController = isFunction(global.AbortController)
+export const fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
+export const writableStream = isFunction(global.WritableStream)
+export const abortController = isFunction(global.AbortController)
 
 // The xhr request to example.com may violate some restrictive CSP configurations,
 // so if we're running in a browser that supports `fetch`, avoid calling getXHR()
@@ -41,16 +39,16 @@ function checkTypeSupport (type) {
 
 // If fetch is supported, then arraybuffer will be supported too. Skip calling
 // checkTypeSupport(), since that calls getXHR().
-exports.arraybuffer = exports.fetch || checkTypeSupport('arraybuffer')
+export const arraybuffer = fetch || checkTypeSupport('arraybuffer')
 
 // These next two tests unavoidably show warnings in Chrome. Since fetch will always
 // be used if it's available, just return false for these to avoid the warnings.
-exports.msstream = !exports.fetch && checkTypeSupport('ms-stream')
-exports.mozchunkedarraybuffer = !exports.fetch && checkTypeSupport('moz-chunked-arraybuffer')
+export const msstream = !fetch && checkTypeSupport('ms-stream')
+export const mozchunkedarraybuffer = !fetch && checkTypeSupport('moz-chunked-arraybuffer')
 
 // If fetch is supported, then overrideMimeType will be supported too. Skip calling
 // getXHR().
-exports.overrideMimeType = exports.fetch || (getXHR() ? isFunction(getXHR().overrideMimeType) : false)
+export const overrideMimeType = fetch || (getXHR() ? isFunction(getXHR().overrideMimeType) : false)
 
 function isFunction (value) {
 	return typeof value === 'function'

@@ -1,4 +1,4 @@
-const {
+import  {
   getAllLibrariesEntries,
   getAllServicesEntries,
   getAllWidgetsEntries,
@@ -6,16 +6,18 @@ const {
   getAllEntries,
   getWidgetEntries,
   getPortalEntries,
-} = require("./getEntryPoints");
-const {
+} from './getEntryPoints.js';
+
+import {
   portal,
   internalResource,
   service,
   library,
   widgetId,
   configName,
-} = require("./processFlags");
-const {
+} from './processFlags.js';
+
+import {
   allLibrariesConfig,
   allServicesConfig,
   allWidgetsConfig,
@@ -27,8 +29,9 @@ const {
   internalResourceConfig,
   libraryConfig,
   clearbladeHotReloadConfig,
-} = require("./configConsts");
-const {
+} from './configConsts.js';
+
+import {
   getLibrariesPath,
   getServicesPath,
   getWidgetsPath,
@@ -39,10 +42,14 @@ const {
   getInternalResourcePath,
   getPortalConfigPath,
   getWidgetPath,
-} = require("./getAssets");
-const { allFileTypes } = require("./configConsts");
-const path = require("path");
-const webpack = require("webpack");
+} from './getAssets.js';
+
+import { allFileTypes } from './configConsts.js';
+import path from 'path';
+import webpack from '`webpack';
+
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const codeEngineEnvironment = {
   // The environment supports arrow functions ('() => { ... }').

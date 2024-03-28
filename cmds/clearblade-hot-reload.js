@@ -1,21 +1,23 @@
-const error = require('../templates/error');
-const spawn = require('child_process').spawnSync;
+import error from '../templates/error.js';
+import child_process from 'child_process';
+import flagConsts from '../templates/flagConsts.js';
 
-module.exports = (args) => {
-  // reliant on portals starting with p, services starting with s, etc...
-  if (args.p) {
-    let script = `npm run start:clearblade-hot-reload -portal=${args.p}`;
-    if (args.m) {
-      script += ` -messagePort=${args.m}`
+const spawn = child_process.spawnSync
+
+export default (args) => {
+  if (args[flagConsts.portal] || args.p) {
+    let script = `npm run start:clearblade-hot-reload --portal=${args[flagConsts.portal] ? args[flagConsts.portal] : args.p}`;
+    if (args[flagConsts.messagePort]) {
+      script += ` --messagePort=${args.m}`
     }
-    if (args.n) {
-      script += ` -noSSL=${args.n}`
+    if (args[flagConsts.noSSL]) {
+      script += ` --noSSL=${args[flagConsts.noSSL]}`
     }
-    if (args.c) {
-      script += ` -caPath=${args.c}`
+    if (args[flagConsts.caPath]) {
+      script += ` --caPath=${args[flagConsts.caPath]}`
     }
     spawn(script, [], { shell: true, stdio: 'inherit' });
   } else {
-    error('Please specify a -portal(-p) flag start hot reload. See cb-dev-kit help clearblade-hot-reload for more info.', true);
+    error('Please specify a --portal(-p) flag start hot reload. See cb-dev-kit help clearblade-hot-reload for more info.', true);
   }
 }

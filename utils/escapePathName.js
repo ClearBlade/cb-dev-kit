@@ -1,1 +1,1 @@
-module.exports = (path) => path.replace(/(\s+)/g, '\\$1');
+export default (path) => path.replace(/(\s+)/g, '\\$1');

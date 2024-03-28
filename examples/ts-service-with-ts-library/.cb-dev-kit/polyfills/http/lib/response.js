@@ -1,6 +1,6 @@
-var capability = require("./capability");
-var inherits = require("inherits");
-var stream = require("readable-stream");
+import capability from './capability.js';
+import inherits from 'inherits';
+import stream from 'readable-stream';
 
 var rStates = (exports.readyStates = {
   UNSENT: 0,
