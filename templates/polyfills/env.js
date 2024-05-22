@@ -29,12 +29,75 @@ String.prototype[Symbol.iterator] = function () {
   };
   return a;
 };
-Float32Array.prototype[Symbol.toStringTag] = "Float32Array";
-Float64Array.prototype[Symbol.toStringTag] = "Float64Array";
-Int16Array.prototype[Symbol.toStringTag] = "Int16Array";
-Int32Array.prototype[Symbol.toStringTag] = "Int32Array";
-Int8Array.prototype[Symbol.toStringTag] = "Int8Array";
-Uint16Array.prototype[Symbol.toStringTag] = "Uint16Array";
-Uint32Array.prototype[Symbol.toStringTag] = "Uint32Array";
-Uint8Array.prototype[Symbol.toStringTag] = "Uint8Array";
-Uint8ClampedArray.prototype[Symbol.toStringTag] = "Uint8ClampedArray";
+
+Object.defineProperty(Float32Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Float32Array";
+  },
+});
+
+Object.defineProperty(Float64Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Float64Array";
+  },
+});
+
+Object.defineProperty(Int16Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Int16Array";
+  },
+});
+
+Object.defineProperty(Int32Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Int32Array";
+  },
+});
+
+Object.defineProperty(Int8Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Int8Array";
+  },
+});
+
+Object.defineProperty(Uint16Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Uint16Array";
+  },
+});
+
+Object.defineProperty(Uint32Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Uint32Array";
+  },
+});
+
+Object.defineProperty(Uint8Array.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Uint8Array";
+  },
+});
+
+Object.defineProperty(Uint8ClampedArray.prototype, Symbol.toStringTag, {
+  configurable: false,
+  enumerable: false,
+  get: function get() {
+    return "Uint8ClampedArray";
+  },
+});
